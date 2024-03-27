@@ -221,10 +221,6 @@
     <Compile Include="Migrations\202403271014517_booking.Designer.cs">
       <DependentUpon>202403271014517_booking.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202403271016445_InventoryBookingFK.cs" />
-    <Compile Include="Migrations\202403271016445_InventoryBookingFK.Designer.cs">
-      <DependentUpon>202403271016445_InventoryBookingFK.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Booking.cs" />
@@ -396,9 +392,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403271014517_booking.resx">
       <DependentUpon>202403271014517_booking.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403271016445_InventoryBookingFK.resx">
-      <DependentUpon>202403271016445_InventoryBookingFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
