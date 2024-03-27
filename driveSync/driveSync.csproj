@@ -197,6 +197,35 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403270908467_InitialCreate.cs" />
+    <Compile Include="Migrations\202403270908467_InitialCreate.Designer.cs">
+      <DependentUpon>202403270908467_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403270928369_passenger.cs" />
+    <Compile Include="Migrations\202403270928369_passenger.Designer.cs">
+      <DependentUpon>202403270928369_passenger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403270957449_driver.cs" />
+    <Compile Include="Migrations\202403270957449_driver.Designer.cs">
+      <DependentUpon>202403270957449_driver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403271004445_ride.cs" />
+    <Compile Include="Migrations\202403271004445_ride.Designer.cs">
+      <DependentUpon>202403271004445_ride.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403271011137_inventory.cs" />
+    <Compile Include="Migrations\202403271011137_inventory.Designer.cs">
+      <DependentUpon>202403271011137_inventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403271014517_booking.cs" />
+    <Compile Include="Migrations\202403271014517_booking.Designer.cs">
+      <DependentUpon>202403271014517_booking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403271016445_InventoryBookingFK.cs" />
+    <Compile Include="Migrations\202403271016445_InventoryBookingFK.Designer.cs">
+      <DependentUpon>202403271016445_InventoryBookingFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Driver.cs" />
@@ -316,6 +345,8 @@
     <Content Include="Views\Inventory\List.cshtml" />
     <Content Include="Views\Inventory\DeleteConfirm.cshtml" />
     <Content Include="Views\Inventory\Error.cshtml" />
+    <Content Include="Views\Passenger\PassengerProfile.cshtml" />
+    <Content Include="Views\Driver\DriverProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -346,6 +377,29 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202403270908467_InitialCreate.resx">
+      <DependentUpon>202403270908467_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403270928369_passenger.resx">
+      <DependentUpon>202403270928369_passenger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403270957449_driver.resx">
+      <DependentUpon>202403270957449_driver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403271004445_ride.resx">
+      <DependentUpon>202403271004445_ride.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403271011137_inventory.resx">
+      <DependentUpon>202403271011137_inventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403271014517_booking.resx">
+      <DependentUpon>202403271014517_booking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403271016445_InventoryBookingFK.resx">
+      <DependentUpon>202403271016445_InventoryBookingFK.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

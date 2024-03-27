@@ -1,7 +1,24 @@
-﻿
+﻿@model ridesnShare.Models.PassengerDTO
 @{
     ViewBag.Title = "PassengerLogin";
 }
 
 <h2>PassengerLogin</h2>
 
+<form action="/Passenger/PassengerLoginSubmit" method="POST">
+    <!-- Add a hidden input field for the id -->
+    <input type="hidden" name="id" value="PassengerId" />
+
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" />
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" />
+    </div>
+
+    <div>
+        <input type="submit" value="Login" />
+    </div>
+</form>
