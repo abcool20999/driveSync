@@ -310,10 +310,15 @@
     <Content Include="Views\Ride\Error.cshtml" />
     <Content Include="Views\Ride\List.cshtml" />
     <Content Include="Views\Ride\SearchForRide.cshtml" />
+    <Content Include="Views\Inventory\Add.cshtml" />
+    <Content Include="Views\Inventory\Edit.cshtml" />
+    <Content Include="Views\Inventory\Details.cshtml" />
+    <Content Include="Views\Inventory\List.cshtml" />
+    <Content Include="Views\Inventory\DeleteConfirm.cshtml" />
+    <Content Include="Views\Inventory\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Inventory\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
