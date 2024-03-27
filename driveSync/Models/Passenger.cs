@@ -5,7 +5,7 @@ using System.Web;
 
 namespace driveSync.Models
 {
-    public class User
+    public class Passenger
     {
     }
 }

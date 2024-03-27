@@ -199,11 +199,12 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Passenger.cs" />
     <Compile Include="Models\Ride.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -278,14 +279,41 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Booking\List.cshtml" />
+    <Content Include="Views\Booking\DeleteConfirm.cshtml" />
+    <Content Include="Views\Booking\EditBooking.cshtml" />
+    <Content Include="Views\Booking\ListBookingsForPassenger.cshtml" />
+    <Content Include="Views\Booking\ListBookingsForDriver.cshtml" />
+    <Content Include="Views\Booking\EditBookingForPassenger.cshtml" />
+    <Content Include="Views\Booking\EditBookingForDriver.cshtml" />
+    <Content Include="Views\Booking\DeleteConfirmPassenger.cshtml" />
+    <Content Include="Views\Booking\DeleteConfirmDriver.cshtml" />
+    <Content Include="Views\Passenger\List.cshtml" />
+    <Content Include="Views\Passenger\Add.cshtml" />
+    <Content Include="Views\Passenger\DeleteConfirm.cshtml" />
+    <Content Include="Views\Passenger\Details.cshtml" />
+    <Content Include="Views\Passenger\Edit.cshtml" />
+    <Content Include="Views\Passenger\Error.cshtml" />
+    <Content Include="Views\Passenger\PassengerLogin.cshtml" />
+    <Content Include="Views\Driver\Add.cshtml" />
+    <Content Include="Views\Driver\DeleteConfirm.cshtml" />
+    <Content Include="Views\Driver\Details.cshtml" />
+    <Content Include="Views\Driver\DriverLogin.cshtml" />
+    <Content Include="Views\Driver\Edit.cshtml" />
+    <Content Include="Views\Driver\List.cshtml" />
+    <Content Include="Views\Driver\Error.cshtml" />
+    <Content Include="Views\Ride\Add.cshtml" />
+    <Content Include="Views\Ride\AvailableRides.cshtml" />
+    <Content Include="Views\Ride\DeleteConfirm.cshtml" />
+    <Content Include="Views\Ride\Details.cshtml" />
+    <Content Include="Views\Ride\Edit.cshtml" />
+    <Content Include="Views\Ride\Error.cshtml" />
+    <Content Include="Views\Ride\List.cshtml" />
+    <Content Include="Views\Ride\SearchForRide.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Booking\" />
     <Folder Include="Views\Inventory\" />
-    <Folder Include="Views\Passenger\" />
-    <Folder Include="Views\Ride\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
