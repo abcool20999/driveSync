@@ -183,11 +183,17 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\BookingDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
+    <Compile Include="Controllers\InventoryDataController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PassengerController.cs" />
     <Compile Include="Controllers\RideController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\RideDataController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
+    <Compile Include="Controllers\DriverDataController.cs" />
+    <Compile Include="Controllers\PassengerDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -277,6 +283,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Booking\" />
     <Folder Include="Views\Inventory\" />
+    <Folder Include="Views\Passenger\" />
     <Folder Include="Views\Ride\" />
     <Folder Include="Views\User\" />
   </ItemGroup>

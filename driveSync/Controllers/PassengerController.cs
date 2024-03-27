@@ -6,27 +6,27 @@ using System.Web.Mvc;
 
 namespace driveSync.Controllers
 {
-    public class UserController : Controller
+    public class PassengerController : Controller
     {
-        // GET: User
+        // GET: Passenger
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: User/Details/5
+        // GET: Passenger/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: User/Create
+        // GET: Passenger/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
+        // POST: Passenger/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -42,13 +42,13 @@ namespace driveSync.Controllers
             }
         }
 
-        // GET: User/Edit/5
+        // GET: Passenger/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: User/Edit/5
+        // POST: Passenger/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -64,13 +64,13 @@ namespace driveSync.Controllers
             }
         }
 
-        // GET: User/Delete/5
+        // GET: Passenger/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: User/Delete/5
+        // POST: Passenger/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
