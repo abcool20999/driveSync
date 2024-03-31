@@ -32,9 +32,9 @@ namespace driveSync.Models
         //a booking has an Inventory ID
         //an Inventory has one booking
 
-        [ForeignKey("Inventory")]
-        public int InventoryId { get; set; }
-        public virtual Inventory Inventory { get; set; }
+        //[ForeignKey("Inventory")]
+        //public int InventoryId { get; set; }
+        //public virtual Inventory Inventory { get; set; }
 
         // a booking can have multiple inventories
         public virtual ICollection<Inventory> Inventories { get; set; }
