@@ -2,10 +2,13 @@
     ViewBag.Title = "PassengerProfile";
 }
 
-<h2>PassengerProfile</h2>
+<h2>driveSync-PassengerProfile</h2>
+<a href="#" style="margin-right: 10px;">Book a Ride</a>
+<a href="#" style="color: darkgreen;">View Bookings</a>
+
 
 @{
-    string profilePictureUrl = "profile_picture.jpg"; // Replace with actual profile picture URL
+  
     string firstName = "John";
     string lastName = "Doe";
     int age = 30;
@@ -21,10 +24,10 @@
     <title>driveSync - PassengerProfile</title>
     <style>
         .container {
-            border: 1px solid #ccc;
+            /*border: 1px solid #ccc;*/
             padding: 20px;
             width: 100vw;
-            margin: 50px auto;
+            margin: 5px auto;
         }
 
         h1 {
@@ -55,7 +58,7 @@
 
         .button {
             display: block;
-            width: 100%;
+            width: 10%;
             padding: 10px;
             text-align: center;
             background-color: #007bff;
@@ -69,10 +72,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>driveSync - PassengerProfile</h1>
         <div class="border-box">
             <div class="profile-info">
-                <img src="@profilePictureUrl" alt="Profile Picture">
+                <img src="~/Content/profile.PNG" alt="Profile Picture">
                 <div>
                     <p>@firstName @lastName</p>
                     <p>Age: @age</p>
@@ -80,8 +82,7 @@
                     <p>Password: @password</p>
                 </div>
             </div>
-            <a href="#" class="button">Book a Ride</a>
-            <a href="#" class="button">View Bookings</a>
+
             <button class="button" onclick="deleteProfile()">Delete Profile</button>
         </div>
     </div>
