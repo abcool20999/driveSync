@@ -1,7 +1,95 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "PassengerProfile";
 }
 
 <h2>PassengerProfile</h2>
 
+@{
+    string profilePictureUrl = "profile_picture.jpg"; // Replace with actual profile picture URL
+    string firstName = "John";
+    string lastName = "Doe";
+    int age = 30;
+    string email = "johndoe@example.com";
+    string password = "********"; // Replace with actual password
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>driveSync - PassengerProfile</title>
+    <style>
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 100vw;
+            margin: 50px auto;
+        }
+
+        h1 {
+            text-align: left;
+        }
+
+        .profile-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .profile-info img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+            }
+
+            .profile-info div {
+                flex-grow: 1;
+                margin-left: 20px;
+            }
+
+                .profile-info div p {
+                    margin: 5px 0;
+                }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>driveSync - PassengerProfile</h1>
+        <div class="border-box">
+            <div class="profile-info">
+                <img src="@profilePictureUrl" alt="Profile Picture">
+                <div>
+                    <p>@firstName @lastName</p>
+                    <p>Age: @age</p>
+                    <p>Email: @email</p>
+                    <p>Password: @password</p>
+                </div>
+            </div>
+            <a href="#" class="button">Book a Ride</a>
+            <a href="#" class="button">View Bookings</a>
+            <button class="button" onclick="deleteProfile()">Delete Profile</button>
+        </div>
+    </div>
+    <script>
+        function deleteProfile() {
+            // Add logic to delete profile here
+            alert('Profile deleted!');
+        }
+    </script>
+</body>
+</html>

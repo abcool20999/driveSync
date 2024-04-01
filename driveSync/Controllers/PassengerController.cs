@@ -71,19 +71,19 @@ namespace driveSync.Controllers
         }
 
         // POST: Passenger/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpGet]
+        public ActionResult PassengerLogin()
         {
-            try
-            {
-                // TODO: Add delete logic here
+            
+           return View("PassengerLogin");
+          
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+        public ActionResult PassengerProfile()
+        {
+
+            return View("PassengerProfile");
+
         }
     }
 }
