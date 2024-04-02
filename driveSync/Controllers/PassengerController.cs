@@ -3,11 +3,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Http;
+using System.Diagnostics;
+using driveSync.Models;
+using System.Web.Script.Serialization;
+using System.Net.NetworkInformation;
+using System.Data.Entity.Migrations.Model;
 
 namespace driveSync.Controllers
 {
     public class PassengerController : Controller
     {
+        private static readonly HttpClient client;
+        private JavaScriptSerializer jss = new JavaScriptSerializer();
+
+        static PassengerController()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44332/api/PassengerData");
+        }
+
+        public ActionResult PassengerLoginSubmit(Passenger passenger)
+        {
+            Debug.WriteLine(passenger.username);
+            Debug.WriteLine(passenger.password);
+
+            string url = "Validate";
+            string jsonpayload = jss.Serialize(passenger);
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+
+            try
+            {
+                HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Passenger resUser = response.Content.ReadAsAsync<Passenger>().Result;
+
+                    Session["userId"] = resUser;
+                    return RedirectToAction("PassengerProfile");
+                }
+                else
+                {
+                    Debug.WriteLine("Unsuccessful login attempt.");
+                    return RedirectToAction("Index", "Home"); // Redirect to home page if login fails
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception details
+                Debug.WriteLine("An error occurred during login: " + ex.Message);
+                // Redirect to an error page or handle the error appropriately
+                return RedirectToAction("Error", "Driver");
+            }
+        }
+
+        public ActionResult PassengerProfile()
+        {
+            // Retrieve user object from session
+            Passenger user = (Passenger)Session["user"];
+
+            // Pass user object to the view
+            return View(user);
+        }
         // GET: Passenger
         public ActionResult Index()
         {
