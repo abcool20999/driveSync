@@ -20,7 +20,7 @@ namespace driveSync.Models
         public DateTime Time { get; set; }
         public string dayOftheweek { get; set; }
 
-        //a trip has a driver ID
+        //a ride has a driver ID
         //a driver has many rides
         [ForeignKey("Driver")]
         public int DriverId { get; set; }

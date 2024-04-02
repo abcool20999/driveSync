@@ -29,13 +29,6 @@ namespace driveSync.Models
         public int RideId { get; set; }
         public virtual Ride Ride { get; set; }
 
-        //a booking has an Inventory ID
-        //an Inventory has one booking
-
-        //[ForeignKey("Inventory")]
-        //public int InventoryId { get; set; }
-        //public virtual Inventory Inventory { get; set; }
-
         // a booking can have multiple inventories
         public virtual ICollection<Inventory> Inventories { get; set; }
 
