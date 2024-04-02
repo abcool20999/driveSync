@@ -60,7 +60,7 @@ namespace driveSync.Controllers
                 // Log the exception details
                 Debug.WriteLine("An error occurred during login: " + ex.Message);
                 // Redirect to an error page or handle the error appropriately
-                return RedirectToAction("Error", "Driver");
+                return RedirectToAction("Error", "Passenger");
             }
         }
 
@@ -133,7 +133,7 @@ namespace driveSync.Controllers
             return View();
         }
 
-        // POST: Passenger/Delete/5
+        // POST: Passenger/Login
         [HttpGet]
         public ActionResult PassengerLogin()
         {

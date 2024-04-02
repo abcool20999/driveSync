@@ -23,7 +23,7 @@ namespace driveSync.Models
         public virtual Passenger Passenger { get; set; }
 
         //a booking has a ride ID
-        //a trip has many bookings
+        //a ride has many bookings
 
         [ForeignKey("Ride")]
         public int RideId { get; set; }
