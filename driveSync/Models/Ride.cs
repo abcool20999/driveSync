@@ -10,6 +10,14 @@ namespace driveSync.Models
 {
     public class Ride
     {
+        internal object StartLocation;
+        internal object EndLocation;
+        internal object Price;
+        internal object DayOfTheWeek;
+        internal string ItemName;
+        internal string Weight;
+        internal string Size;
+        internal string Quantity;
 
         //what describes a ride
         [Key]
@@ -33,14 +41,14 @@ namespace driveSync.Models
     public class RideDTO
     {
         public int RideId { get; set; }
-        public string startLocation { get; set; }
-        public string endLocation { get; set; }
-        public string price { get; set; }
+        public string StartLocation { get; set; }
+        public string EndLocation { get; set; }
+        public string Price { get; set; }
 
         public int DriverId { get; set; }
         public DateTime Time { get; set; }
 
-        public string dayOftheweek { get; set; }
+        public string DayOftheweek { get; set; }
 
     }
 }
