@@ -63,6 +63,7 @@ namespace driveSync.Controllers
                 return BadRequest("User not found");
             }
         }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

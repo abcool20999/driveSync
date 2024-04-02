@@ -37,18 +37,23 @@ namespace driveSync.Controllers
             {
                 HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-                if (response.IsSuccessStatusCode)
+                //if (response.IsSuccessStatusCode)
                 {
                     Passenger resUser = response.Content.ReadAsAsync<Passenger>().Result;
 
-                    Session["userId"] = resUser;
-                    return RedirectToAction("PassengerProfile");
+                    //Session.Clear();
+                    //Session["userId"] = resUser;
+                    //var action = $"PassengerProfile";
+                    //return RedirectToAction(action, "Passenger");
+
+                    return RedirectToAction("PassengerProfile", "Passenger");
+
                 }
-                else
-                {
-                    Debug.WriteLine("Unsuccessful login attempt.");
-                    return RedirectToAction("Index", "Home"); // Redirect to home page if login fails
-                }
+                //else
+                //{
+                //    Debug.WriteLine("Unsuccessful login attempt.");
+                //    return RedirectToAction("Index", "Home"); // Redirect to home page if login fails
+                //}
             }
             catch (Exception ex)
             {
@@ -61,13 +66,12 @@ namespace driveSync.Controllers
 
         public ActionResult PassengerProfile()
         {
-            // Retrieve user object from session
-            Passenger user = (Passenger)Session["user"];
+
 
             // Pass user object to the view
-            return View(user);
+            return View();
         }
-        // GET: Passenger
+        //GET: Passenger
         public ActionResult Index()
         {
             return View();
@@ -138,11 +142,6 @@ namespace driveSync.Controllers
           
         }
 
-        public ActionResult PassengerProfile()
-        {
-
-            return View("PassengerProfile");
-
-        }
+  
     }
 }
