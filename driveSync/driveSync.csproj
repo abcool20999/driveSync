@@ -340,6 +340,7 @@
     <Content Include="Views\Admin\ListPassengers.cshtml" />
     <Content Include="Views\Admin\ListDrivers.cshtml" />
     <Content Include="Views\Admin\DeleteConfirmDriver.cshtml" />
+    <Content Include="Views\Admin\AdminProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
