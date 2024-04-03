@@ -26,6 +26,8 @@ namespace driveSync.Models
         }
 
         //we are setting the passenger model as a db table
+
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Ride> Rides { get; set; }

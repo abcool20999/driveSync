@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>driveSync</RootNamespace>
     <AssemblyName>driveSync</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -182,6 +182,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminDataController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\BookingDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -201,8 +203,13 @@
     <Compile Include="Migrations\202403302159375_driveSync.designer.cs">
       <DependentUpon>202403302159375_driveSync.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202404030333430_admin.cs" />
+    <Compile Include="Migrations\202404030333430_admin.Designer.cs">
+      <DependentUpon>202404030333430_admin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -324,8 +331,15 @@
     <Content Include="Views\Driver\DriverProfile.cshtml" />
     <Content Include="Views\Admin\ListBookingsForTrip.cshtml" />
     <Content Include="Views\Admin\Add.cshtml" />
-    <Content Include="Views\Admin\Edit.cshtml" />
-    <Content Include="Views\Admin\DeleteConfirm.cshtml" />
+    <Content Include="Views\Admin\EditPassenger.cshtml" />
+    <Content Include="Views\Admin\DeleteConfirmPassenger.cshtml" />
+    <Content Include="Views\Admin\AdminLogin.cshtml" />
+    <Content Include="Views\Admin\AddPassenger.cshtml" />
+    <Content Include="Views\Admin\AddDriver.cshtml" />
+    <Content Include="Views\Admin\EditDriver.cshtml" />
+    <Content Include="Views\Admin\ListPassengers.cshtml" />
+    <Content Include="Views\Admin\ListDrivers.cshtml" />
+    <Content Include="Views\Admin\DeleteConfirmDriver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -360,6 +374,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202403302159375_driveSync.resx">
       <DependentUpon>202403302159375_driveSync.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404030333430_admin.resx">
+      <DependentUpon>202404030333430_admin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
