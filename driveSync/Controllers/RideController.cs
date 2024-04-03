@@ -41,7 +41,7 @@ namespace driveSync.Controllers
                     IEnumerable<RideDTO> rides = jss.Deserialize<IEnumerable<RideDTO>>(responseData);
 
                     // Debug info
-                    Debug.WriteLine("Number of trips received: " + rides.Count());
+                    Debug.WriteLine("Number of rides received: " + rides.Count());
 
                     // Return the view with the list of rides
                     return View(rides);
@@ -75,19 +75,58 @@ public ActionResult Details(int id)
             return View("Add");
         }
 
-        // POST: Trip/AddTrip
+        // POST: Ride/AddRide
         [HttpPost]
-        public ActionResult AddRide(Ride ride)
+        public ActionResult AddRide(RideDTO ride)
         {
             Debug.WriteLine("the inputted trip name is :");
-            Debug.WriteLine(ride.price);
+            Debug.WriteLine(ride.Price);
             //objective: add a new trip into our system using the API
             //curl -H "Content-Type:application/json" -d @trip.json  https://localhost:44354/api/RideData/AddRide
-            string url = "AddTrip";
 
+            string url = "AddRide";
+
+            var rideentity = new Ride
+            {
+                DriverId = ride.DriverId,
+                StartLocation = ride.StartLocation,
+                EndLocation = ride.EndLocation,
+                Price = ride.Price,
+                Time = ride.Time,
+
+
+                dayOftheweek = ride.DayOftheweek,
+                BagQuantity = ride.BagQuantity,
+                BagSize = ride.BagSize,
+                BagWeight = ride.BagWeight,
+                LuggageQuantity = ride.LuggageQuantity,
+                LuggageSize = ride.LuggageSize,
+                LuggageWeight = ride.LuggageWeight,
+
+            };
+
+            //var inventoryentity = new List<Inventory>()
+            //{
+            //    new Inventory
+            //    {
+            //        ItemName = "Bag",
+            //        Quantity = ride.BagQuantity,
+            //        Size = ride.BagSize,
+            //        Weight = ride.BagWeight
+            //    },
+
+            //    new Inventory
+            //    {
+            //        ItemName = "Luggage",
+            //        Quantity = ride.LuggageQuantity,
+            //        Size = ride.LuggageSize,
+            //        Weight = ride.LuggageWeight
+            //    }
+            //};
+            
             //convert trip object into a json format to then send to our api
             JavaScriptSerializer jss = new JavaScriptSerializer();
-            string jsonpayload = jss.Serialize(ride);
+            string jsonpayload = jss.Serialize(rideentity);
 
             Debug.WriteLine(jsonpayload);
 

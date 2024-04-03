@@ -20,7 +20,7 @@ namespace driveSync.Controllers
         static PassengerController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44332/api/PassengerData");
+            client.BaseAddress = new Uri("https://localhost:44332/api/PassengerData/");
         }
 
         public ActionResult PassengerLoginSubmit(Passenger passenger)
@@ -64,6 +64,44 @@ namespace driveSync.Controllers
             }
         }
 
+        public ActionResult List()
+        {
+            try
+            {
+                // Establish url connection endpoint
+                string url = "ListPassengers";
+
+                // Send request to API to retrieve list of passengers
+                HttpResponseMessage response = client.GetAsync(url).Result;
+
+                // Check if response is successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Parse JSON response into a list of PassengerDTO objects
+                    var responseData = response.Content.ReadAsStringAsync().Result;
+                    IEnumerable<PassengerDTO> passengers = jss.Deserialize<IEnumerable<PassengerDTO>>(responseData);
+
+                    // Debug info
+                    Debug.WriteLine("Number of rides received: " + passengers.Count());
+
+                    // Return the view with the list of rides
+                    return View(passengers);
+                }
+                else
+                {
+                    Debug.WriteLine("API request failed with status code: " + response.StatusCode);
+                    // Handle unsuccessful response (e.g., return an error view)
+                    return View("Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("An error occurred: " + ex.Message);
+                // Handle any exceptions (e.g., return an error view)
+                return View("Error");
+            }
+        }
+
         public ActionResult PassengerProfile()
         {
 
@@ -71,11 +109,7 @@ namespace driveSync.Controllers
             // Pass user object to the view
             return View();
         }
-        //GET: Passenger
-        public ActionResult Index()
-        {
-            return View();
-        }
+    
 
         // GET: Passenger/Details/5
         public ActionResult Details(int id)

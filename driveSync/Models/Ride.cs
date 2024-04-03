@@ -28,6 +28,14 @@ namespace driveSync.Models
         public DateTime Time { get; set; }
         public string dayOftheweek { get; set; }
 
+        public string BagQuantity { get; set; }
+        public string BagWeight { get; set; }
+        public string BagSize { get; set; }
+
+        public string LuggageQuantity { get; set; }
+        public string LuggageWeight { get; set; }
+        public string LuggageSize { get; set; }
+
         //a ride has a driver ID
         //a driver has many rides
         [ForeignKey("Driver")]
@@ -40,7 +48,6 @@ namespace driveSync.Models
 
     public class RideDTO
     {
-        public int RideId { get; set; }
         public string StartLocation { get; set; }
         public string EndLocation { get; set; }
         public string Price { get; set; }
@@ -49,6 +56,16 @@ namespace driveSync.Models
         public DateTime Time { get; set; }
 
         public string DayOftheweek { get; set; }
+
+        //public string ItemName { get; set; }
+        public string BagQuantity { get; set; }
+        public string BagWeight { get; set; }
+        public string BagSize { get; set; }
+
+        public string LuggageQuantity { get; set; }
+        public string LuggageWeight { get; set; }
+        public string LuggageSize { get; set; }
+
 
     }
 }

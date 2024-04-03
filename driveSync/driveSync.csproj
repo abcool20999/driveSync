@@ -186,6 +186,7 @@
     <Compile Include="Controllers\AdminDataController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\BookingDataController.cs" />
+    <Compile Include="Controllers\driveSyncContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\InventoryDataController.cs" />
@@ -206,6 +207,14 @@
     <Compile Include="Migrations\202404030333430_admin.cs" />
     <Compile Include="Migrations\202404030333430_admin.Designer.cs">
       <DependentUpon>202404030333430_admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404030655156_username.cs" />
+    <Compile Include="Migrations\202404030655156_username.Designer.cs">
+      <DependentUpon>202404030655156_username.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404030929422_addrides.cs" />
+    <Compile Include="Migrations\202404030929422_addrides.Designer.cs">
+      <DependentUpon>202404030929422_addrides.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -378,6 +387,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404030333430_admin.resx">
       <DependentUpon>202404030333430_admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404030655156_username.resx">
+      <DependentUpon>202404030655156_username.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404030929422_addrides.resx">
+      <DependentUpon>202404030929422_addrides.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

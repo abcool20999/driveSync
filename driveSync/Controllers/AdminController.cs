@@ -71,6 +71,9 @@ namespace driveSync.Controllers
             // Pass user object to the view
             return View();
         }
+
+       
+
         // GET: Admin
         public ActionResult Index()
         {

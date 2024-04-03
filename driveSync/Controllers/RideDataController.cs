@@ -15,7 +15,7 @@ using driveSync.Models;
 
 namespace ridesnShare.Controllers
 {
-    public class TripDataController : ApiController
+    public class RideDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         /// <summary>
@@ -36,7 +36,7 @@ namespace ridesnShare.Controllers
 
             Rides.ForEach(r => RideDTOs.Add(new RideDTO()
             {
-                RideId = r.RideId,
+                //RideId = r.RideId,
                 StartLocation = r.startLocation,
                 EndLocation = r.endLocation,
                 Price = r.price,

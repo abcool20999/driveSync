@@ -16,6 +16,7 @@ namespace driveSync.Controllers
 
     public class AdminDataController : ApiController
     {
+
         private ApplicationDbContext db = new ApplicationDbContext();
         /// <summary>
         /// Validates a admin's credentials by checking if the user exists in the database and if the provided password matches.

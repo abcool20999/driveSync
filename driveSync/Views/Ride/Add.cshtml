@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "AddTrip";
+    ViewBag.Title = "AddRide";
 }
 
 <style>
@@ -36,6 +36,23 @@
         box-sizing: border-box;
     }
 
+    fieldset {
+        width:22%;
+        border: 2px solid #ccc; /* Border style */
+        border-radius: 5px; /* Rounded corners */
+        padding: 10px; /* Add some padding inside the fieldset */
+        margin-bottom: 20px; /* Add margin between fieldsets */
+    }
+
+   select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
     input[type="submit"] {
         width: 100%;
         padding: 10px;
@@ -52,7 +69,7 @@
         }
 </style>
 
-<h2>New Trip</h2>
+<h2>New Ride</h2>
 <!-- Trip Information-->
 <form action="/Ride/AddRide" method="POST">
     <div>
@@ -74,21 +91,50 @@
     <div>
         <label>dayOftheweek:</label><input type="text" name="dayOftheweek" />
     </div>
-    <div>
-        <label>ItemName:</label><input type="text" name="ItemName" />
-    </div>
-    <div>
-        <label>Quantity:</label><input type="text" name="Quantity" />
-    </div>
-    <div>
-        <label>Weight:</label><input type="text" name="Weight" />
-    </div>
-    <div>
-        <label>Size:</label><input type="text" name="Size" />
-    </div>
-    <div>
-        <input type="submit" value="Add Trip" />
-    </div>
+    <fieldset>
+      
+            
+                <legend>
+                    <label>Luggage:</label>
+                </legend>
+               
+                @*<input type="text" name="ItemName" />*@
+           
+            <div>
+                <label>Quantity:</label><input type="text" name="Quantity" />
+            </div>
+            <div>
+                <label>Weight:</label><input type="text" name="Weight" />
+            </div>
+            <div>
+                <label>Size:</label><input type="text" name="Size" />
+            </div>
+    
+    </fieldset>
+   
+    <fieldset>
+        <legend>
+            <label>Bag:</label>
+        </legend>
+        <div>
+           
+            @*<input type="text" name="ItemName" />*@
+
+        </div>
+        <div>
+            <label>Quantity:</label><input type="text" name="Quantity" />
+        </div>
+        <div>
+            <label>Weight:</label><input type="text" name="Weight" />
+        </div>
+        <div>
+            <label>Size:</label><input type="text" name="Size" />
+        </div>
+        <div>
+            <input type="submit" value="Add Ride" />
+        </div>
+    </fieldset>
+   
 </form>
 
  
