@@ -154,16 +154,16 @@ public ActionResult Details(int id)
             //check if you can access information from our postasync request, get an httpresponse request and result of the request
 
             HttpResponseMessage response = client.PostAsync(url, content).Result;
-            if (response.IsSuccessStatusCode)
-            {
+            //if (response.IsSuccessStatusCode)
+            //{
                 //var rid = JsonConvert.DeserializeObject<Ride>(response.Content.ReadAsStringAsync().Result);
 
-                return RedirectToAction("List", ride);
-            }
-            else
-            {
-                return RedirectToAction("Errors");
-            }
+                return RedirectToAction("List");
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Errors");
+            //}
         }
 
         // GET: Ride/Edit/5
