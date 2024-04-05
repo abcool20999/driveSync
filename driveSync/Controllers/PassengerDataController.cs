@@ -44,19 +44,45 @@ namespace driveSync.Controllers
                 return PassengerDTOs;
 
             }
-            /// <summary>
-            /// Validates a passenger's credentials by checking if the user exists in the database and if the provided password matches.
-            /// </summary>
-            /// <param name="passenger">The Passenger object containing username and password for validation.</param>
-            /// <returns>
-            /// IHttpActionResult representing the result of the validation process:
-            ///   - If the user exists and the password matches, returns Ok with the validated Passenger object.
-            ///   - If the user exists but the password does not match, returns BadRequest with a message indicating incorrect password.
-            ///   - If the user does not exist, returns BadRequest with a message indicating that the user was not found.
-            /// </returns>
-            /// <example></example>
+        /// <summary>
+        /// Validates a passenger's credentials by checking if the user exists in the database and if the provided password matches.
+        /// </summary>
+        /// <param name="passenger">The Passenger object containing username and password for validation.</param>
+        /// <returns>
+        /// IHttpActionResult representing the result of the validation process:
+        ///   - If the user exists and the password matches, returns Ok with the validated Passenger object.
+        ///   - If the user exists but the password does not match, returns BadRequest with a message indicating incorrect password.
+        ///   - If the user does not exist, returns BadRequest with a message indicating that the user was not found.
+        /// </returns>
+        /// <example></example>
+        /// 
 
-         [HttpPost]
+        // <summary>
+        /// Adds a new passenger to the database.
+        /// </summary>
+        /// <param name="passenger">The passenger object containing information about the new passenger.</param>
+        /// <returns>
+        /// An IHttpActionResult indicating the result of the addition operation.
+        /// </returns>
+        /// <example>
+        /// POST: api/PassengerData/AddPassenger/5
+        /// </example>
+        [ResponseType(typeof(Passenger))]
+        [HttpPost]
+        public IHttpActionResult AddPassenger(Passenger passenger)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Passengers.Add(passenger);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = passenger.PassengerId }, passenger);
+        }
+
+        [HttpPost]
         [Route("api/PassengerData/Validate")]
         public IHttpActionResult Validate(Passenger passenger)
         {

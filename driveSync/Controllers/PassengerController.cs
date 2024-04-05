@@ -9,6 +9,7 @@ using driveSync.Models;
 using System.Web.Script.Serialization;
 using System.Net.NetworkInformation;
 using System.Data.Entity.Migrations.Model;
+using Newtonsoft.Json;
 
 namespace driveSync.Controllers
 {
@@ -117,27 +118,52 @@ namespace driveSync.Controllers
             return View();
         }
 
-        // GET: Passenger/Create
-        public ActionResult Create()
+        // GET: Passenger/Add
+        public ActionResult Add()
         {
-            return View();
+              return View();     
+           
         }
 
         // POST: Passenger/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
+        public ActionResult AddPassenger(Passenger passenger)
+        {
+            Debug.WriteLine("the inputted passenger name is :");
+            Debug.WriteLine(passenger.firstName);
+            //objective: add a new passenger into our system using the API
+            //curl -H "Content-Type:application/json" -d @trip.json  https://localhost:44354/api/PassengerData/AddPassendger
+
+            string url = "AddPassenger";
+
+            //convert passenger object into a json format to then send to our api
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            string jsonpayload = jss.Serialize(passenger);
+
+            Debug.WriteLine(jsonpayload);
+
+            //send the json payload to the url through the use of our client
+            //setup the postdata as HttpContent variable content
+            HttpContent content = new StringContent(jsonpayload);
+
+            //configure a header for our client to specify the content type of app for post 
+            content.Headers.ContentType.MediaType = "application/json";
+
+            //check if you can access information from our postasync request, get an httpresponse request and result of the request
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
             }
+            else
+            {
+                return RedirectToAction("Errors");
+            }
+
         }
+           
 
         // GET: Passenger/Edit/5
         public ActionResult Edit(int id)
