@@ -44,18 +44,7 @@ namespace driveSync.Controllers
                 return PassengerDTOs;
 
             }
-        /// <summary>
-        /// Validates a passenger's credentials by checking if the user exists in the database and if the provided password matches.
-        /// </summary>
-        /// <param name="passenger">The Passenger object containing username and password for validation.</param>
-        /// <returns>
-        /// IHttpActionResult representing the result of the validation process:
-        ///   - If the user exists and the password matches, returns Ok with the validated Passenger object.
-        ///   - If the user exists but the password does not match, returns BadRequest with a message indicating incorrect password.
-        ///   - If the user does not exist, returns BadRequest with a message indicating that the user was not found.
-        /// </returns>
-        /// <example></example>
-        /// 
+    
 
         // <summary>
         /// Adds a new passenger to the database.
@@ -82,6 +71,17 @@ namespace driveSync.Controllers
             return CreatedAtRoute("DefaultApi", new { id = passenger.PassengerId }, passenger);
         }
 
+        /// <summary>
+        /// Validates a passenger's credentials by checking if the user exists in the database and if the provided password matches.
+        /// </summary>
+        /// <param name="passenger">The Passenger object containing username and password for validation.</param>
+        /// <returns>
+        /// IHttpActionResult representing the result of the validation process:
+        ///   - If the user exists and the password matches, returns Ok with the validated Passenger object.
+        ///   - If the user exists but the password does not match, returns BadRequest with a message indicating incorrect password.
+        ///   - If the user does not exist, returns BadRequest with a message indicating that the user was not found.
+        /// </returns>
+        /// <example></example>
         [HttpPost]
         [Route("api/PassengerData/Validate")]
         public IHttpActionResult Validate(Passenger passenger)

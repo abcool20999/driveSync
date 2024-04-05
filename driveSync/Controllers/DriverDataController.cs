@@ -91,6 +91,31 @@ namespace driveSync.Controllers
             }
         }
 
+        // <summary>
+        /// Adds a new driver to the database.
+        /// </summary>
+        /// <param name="driver">The driver object containing information about the new driver.</param>
+        /// <returns>
+        /// An IHttpActionResult indicating the result of the addition operation.
+        /// </returns>
+        /// <example>
+        /// POST: api/DriverData/AddDriver
+        /// </example>
+        [ResponseType(typeof(Driver))]
+        [HttpPost]
+        public IHttpActionResult AddDriver(Driver driver)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Drivers.Add(driver);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = driver.DriverId }, driver);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

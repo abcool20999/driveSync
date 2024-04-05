@@ -133,7 +133,7 @@ namespace driveSync.Controllers
             Debug.WriteLine("the inputted passenger name is :");
             Debug.WriteLine(passenger.firstName);
             //objective: add a new passenger into our system using the API
-            //curl -H "Content-Type:application/json" -d @trip.json  https://localhost:44354/api/PassengerData/AddPassendger
+            //curl -H "Content-Type:application/json" -d @trip.json  https://localhost:44354/api/PassengerData/AddPassenger
 
             string url = "AddPassenger";
 
