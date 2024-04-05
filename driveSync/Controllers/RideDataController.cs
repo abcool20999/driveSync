@@ -28,23 +28,24 @@ namespace ridesnShare.Controllers
         /// GET: api/TripData/ListTrips
         /// </example>
         [HttpGet]
-        [Route("api/RideData/ListRides")]
-        public IEnumerable<RideDTO> Rides()
+        [Route("api/RideData/ListRides/{id}")]
+        public IEnumerable<Ride> Rides(int id)
         {
-            List<Ride> Rides = db.Rides.ToList();
-            List<RideDTO> RideDTOs = new List<RideDTO>();
+            List<Ride> Rides = db.Rides.Where(r=>r.DriverId==id).ToList();
+            //List<Ride> RideDTOs = new List<Ride>();
 
-            Rides.ForEach(r => RideDTOs.Add(new RideDTO()
-            {
-                //RideId = r.RideId,
-                StartLocation = r.startLocation,
-                EndLocation = r.endLocation,
-                Price = r.price,
-                Time = r.Time,
-                DayOftheweek = r.dayOftheweek
-            }));
+            //Rides.ForEach(r => Rides.Add(new Ride()
+            //{
+            //    //RideId = r.RideId,
+            //    DriverId = r.DriverId,
+            //    StartLocation = r.startLocation,
+            //    EndLocation = r.endLocation,
+            //    Price = r.price,
+            //    Time = r.Time,
+            //    dayOftheweek = r.dayOftheweek
+            //}));
 
-            return RideDTOs;
+            return Rides;
 
         }
         /// <summary>
@@ -57,52 +58,60 @@ namespace ridesnShare.Controllers
         /// <example>
         /// POST: api/RideData/AddRide/5
         /// </example>
+        [HttpGet]
+        [Route("api/RideData/GetDriver/{id}")]
+
+        public Driver GetDriver(int id)
+        {
+            return db.Drivers.FirstOrDefault(d=> d.DriverId == id);
+        }    
         [ResponseType(typeof(Ride))]
         [HttpPost]
-        public IHttpActionResult AddRide(Ride ride)
+        public Ride AddRide(Ride ride)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                //return BadRequest(ModelState);
             }
 
             // Find the driver associated with the ride (assuming RideId is actually DriverId)
-            Driver driver = db.Drivers.Find(ride.RideId);
+            Driver driver = db.Drivers.Find(ride.DriverId);
 
             if (driver == null)
             {
                 Debug.WriteLine("Driver doesn't exist");
-                return BadRequest("Driver not found");
+                //return BadRequest("Driver not found");
+                return null;
             }
 
             // Create an instance of Inventory
-            Inventory inventory = new Inventory
-            {
-                ItemName = ride.ItemName,
-                Weight = ride.Weight,
-                Size = ride.Size,
-                Quantity = ride.Quantity
-            };
+            //Inventory inventory = new Inventory
+            //{
+            //    ItemName = ride.ItemName,
+            //    Weight = ride.Weight,
+            //    Size = ride.Size,
+            //    Quantity = ride.Quantity
+            //};
 
-            // Add the inventory to the database
-            db.Inventories.Add(inventory);
-            db.SaveChanges();
+            //// Add the inventory to the database
+            //db.Inventories.Add(inventory);
+            //db.SaveChanges();
 
             // Create an instance of Ride
-            Ride newRide = new Ride
-            {
-                StartLocation = ride.StartLocation,
-                EndLocation = ride.EndLocation,
-                Price = ride.Price,
-                Time = ride.Time,
-                DayOfTheWeek = ride.DayOfTheWeek,
-            };
+            //Ride newRide = new Ride
+            //{
+            //    StartLocation = ride.StartLocation,
+            //    EndLocation = ride.EndLocation,
+            //    Price = ride.Price,
+            //    Time = ride.Time,
+            //    DayOfTheWeek = ride.DayOfTheWeek,
+            //};
 
             // Add the ride to the database
-            db.Rides.Add(newRide);
+            db.Rides.Add(ride);
             db.SaveChanges();
 
-            return Ok("Ride added");
+            return ride;
         }
 
     }

@@ -20,7 +20,7 @@ namespace driveSync.Controllers
         static DriverController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44332/api/DriverData");
+            client.BaseAddress = new Uri("https://localhost:44332/api/DriverData/");
         }
 
         public ActionResult DriverLoginSubmit(Driver driver)
@@ -46,7 +46,7 @@ namespace driveSync.Controllers
                     //var action = $"PassengerProfile";
                     //return RedirectToAction(action, "Passenger");
 
-                    return RedirectToAction("DriverProfile", "Driver");
+                    return RedirectToAction("DriverProfile", "Driver", resUser);
 
                 }
                 //else
@@ -64,12 +64,12 @@ namespace driveSync.Controllers
             }
         }
 
-        public ActionResult DriverProfile()
+        public ActionResult DriverProfile(Driver driver)
         {
 
 
             // Pass user object to the view
-            return View();
+            return View(driver);
         }
         // GET: User
         public ActionResult Index()

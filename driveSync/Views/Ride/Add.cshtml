@@ -1,4 +1,5 @@
-﻿@{
+﻿@model driveSync.Models.Driver
+@{
     ViewBag.Title = "AddRide";
 }
 
@@ -73,23 +74,23 @@
 <!-- Trip Information-->
 <form action="/Ride/AddRide" method="POST">
     <div>
-        <label>DriverId:</label><input type="text" name="DriverId" />
+        <input type="hidden" value=@Model.DriverId name="DriverId" />
     </div>
 
     <div>
-        <label>startLocation:</label><input type="text" name="startLocation" />
+        <label>startLocation:</label><input type="text" name="StartLocation" />
     </div>
     <div>
-        <label>endLocation:</label><input type="text" name="endLocation" />
+        <label>endLocation:</label><input type="text" name="EndLocation" />
     </div>
     <div>
-        <label>price:</label><input type="text" name="price" />
+        <label>price:</label><input type="text" name="Price" />
     </div>
     <div>
         <label>Time:</label><input type="text" name="Time" />
     </div>
     <div>
-        <label>dayOftheweek:</label><input type="text" name="dayOftheweek" />
+        <label>dayOftheweek:</label><input type="text" name="DayOftheweek" />
     </div>
     <fieldset>
       
@@ -101,13 +102,13 @@
                 @*<input type="text" name="ItemName" />*@
            
             <div>
-                <label>Quantity:</label><input type="text" name="Quantity" />
+                <label>Quantity:</label><input type="text" name="LuggageQuantity" />
             </div>
             <div>
-                <label>Weight:</label><input type="text" name="Weight" />
+                <label>Weight:</label><input type="text" name="LuggageWeight" />
             </div>
             <div>
-                <label>Size:</label><input type="text" name="Size" />
+                <label>Size:</label><input type="text" name="LuggageSize" />
             </div>
     
     </fieldset>
@@ -122,13 +123,13 @@
 
         </div>
         <div>
-            <label>Quantity:</label><input type="text" name="Quantity" />
+            <label>Quantity:</label><input type="text" name="BagQuantity" />
         </div>
         <div>
-            <label>Weight:</label><input type="text" name="Weight" />
+            <label>Weight:</label><input type="text" name="BagWeight" />
         </div>
         <div>
-            <label>Size:</label><input type="text" name="Size" />
+            <label>Size:</label><input type="text" name="BagSize" />
         </div>
         <div>
             <input type="submit" value="Add Ride" />

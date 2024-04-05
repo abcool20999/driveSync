@@ -1,4 +1,4 @@
-﻿@model IEnumerable<driveSync.Models.RideDTO>
+﻿@model IEnumerable<driveSync.Models.Ride>
 @{
     ViewBag.Title = "Ride";
 }
@@ -119,7 +119,7 @@
     <!-- Header -->
     <h2>List of Trips</h2>
     <!-- Link to add a new trip -->
-    <a href="/Trip/Add" class="mbtn">Add a Trip</a>
+    <a href="/Ride/Add" class="mbtn">Add a Ride</a>
 
     <!-- Search form -->
     <form action="" method="GET">
@@ -138,7 +138,12 @@
                 <th>Price</th>
                 <th>Time</th>
                 <th>Day of the Week</th>
-                <th colspan="2">Actions</th>
+                <th>LuggageQuantity</th>
+                <th>LuggageWeight</th>
+                <th>LuggageSize</th>
+                <th>BagQuantity</th>
+                <th>BagWeight</th>
+                <th>BagSize</th>
             </tr>
         </thead>
 
@@ -147,18 +152,26 @@
             {
                 <tr>
                     <!-- Display trip details -->
-                    <td>@ride.StartLocation</td>
-                    <td>@ride.EndLocation</td>
-                    <td>@ride.Price</td>
+                    <td>@ride.startLocation</td>
+                    <td>@ride.endLocation</td>
+                    <td>@ride.price</td>
                     <td>@ride.Time</td>
-                    <td>@ride.DayOftheweek</td>
-                    @*<td>@ride.ItemName</td>
-                    <td>@ride.Quantity</td>
-                    <td>@ride.Weight</td>
-                    <td>@ride.Size</td>*@
+                    <td>@ride.dayOftheweek</td>
+                    <td>@ride.LuggageQuantity</td>
+                    <td>@ride.LuggageWeight</td>
+                    <td>@ride.LuggageSize</td>
+                    <td>@ride.BagQuantity</td>
+                    <td>@ride.BagWeight</td>
+                    <td>@ride.BagSize</td>
 
-                    <td><a class="mbtn update" href="/Trip/Edit/@ride.RideId">Update</a></td>
-                    <td><a class="mbtn delete" href="/Trip/DeleteConfirm/@ride.RideId">Delete</a></td>
+                    @*<td>@ride.ItemName</td>
+        <td>@ride.Quantity</td>
+        <td>@ride.Weight</td>
+        <td>@ride.Size</td>*@
+
+
+                    <td><a class="mbtn update" href="/Ride/Edit/@ride.RideId">Update</a></td>
+                    <td><a class="mbtn delete" href="/Ride/DeleteConfirm/@ride.RideId">Delete</a></td>
                 </tr>
             }
         </tbody>

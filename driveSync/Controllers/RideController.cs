@@ -9,6 +9,9 @@ using driveSync.Models;
 using System.Web.Script.Serialization;
 using System.Net.NetworkInformation;
 using System.Data.Entity.Migrations.Model;
+using System.Security.Policy;
+using System.Web.UI.WebControls;
+using Newtonsoft.Json;
 
 namespace driveSync.Controllers
 {
@@ -23,12 +26,12 @@ namespace driveSync.Controllers
             client.BaseAddress = new Uri("https://localhost:44332/api/RideData/");
         }
         // GET: Ride/List
-        public ActionResult List()
+        public ActionResult List(Ride ride)
         {
             try
             {
                 // Establish url connection endpoint
-                string url = "ListRides";
+                string url = "ListRides/"+ride.DriverId;
 
                 // Send request to API to retrieve list of rides
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -38,7 +41,7 @@ namespace driveSync.Controllers
                 {
                     // Parse JSON response into a list of RideDTO objects
                     var responseData = response.Content.ReadAsStringAsync().Result;
-                    IEnumerable<RideDTO> rides = jss.Deserialize<IEnumerable<RideDTO>>(responseData);
+                    IEnumerable<Ride> rides = jss.Deserialize<IEnumerable<Ride>>(responseData);
 
                     // Debug info
                     Debug.WriteLine("Number of rides received: " + rides.Count());
@@ -70,14 +73,27 @@ public ActionResult Details(int id)
         }
 
         // GET: Ride/Add
-        public ActionResult Add()
+        //[Route("/Add/:driverId")]
+        public ActionResult Add(int id)
         {
-            return View("Add");
+            HttpResponseMessage response = client.GetAsync("GetDriver/"+id).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var driver=JsonConvert.DeserializeObject<Driver>(response.Content.ReadAsStringAsync().Result);
+                return View("Add", driver);
+            }
+            else
+            {
+                return RedirectToAction("Errors");
+            }
+            
+           
+
         }
 
         // POST: Ride/AddRide
         [HttpPost]
-        public ActionResult AddRide(RideDTO ride)
+        public ActionResult AddRide(Ride ride)
         {
             Debug.WriteLine("the inputted trip name is :");
             Debug.WriteLine(ride.Price);
@@ -93,9 +109,7 @@ public ActionResult Details(int id)
                 EndLocation = ride.EndLocation,
                 Price = ride.Price,
                 Time = ride.Time,
-
-
-                dayOftheweek = ride.DayOftheweek,
+                dayOftheweek = ride.dayOftheweek,
                 BagQuantity = ride.BagQuantity,
                 BagSize = ride.BagSize,
                 BagWeight = ride.BagWeight,
@@ -142,7 +156,9 @@ public ActionResult Details(int id)
             HttpResponseMessage response = client.PostAsync(url, content).Result;
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                //var rid = JsonConvert.DeserializeObject<Ride>(response.Content.ReadAsStringAsync().Result);
+
+                return RedirectToAction("List", ride);
             }
             else
             {
