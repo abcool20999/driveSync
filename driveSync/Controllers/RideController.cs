@@ -105,9 +105,9 @@ public ActionResult Details(int id)
             var rideentity = new Ride
             {
                 DriverId = ride.DriverId,
-                StartLocation = ride.StartLocation,
-                EndLocation = ride.EndLocation,
-                Price = ride.Price,
+                startLocation = ride.startLocation,
+                endLocation = ride.endLocation,
+                price = ride.price,
                 Time = ride.Time,
                 dayOftheweek = ride.dayOftheweek,
                 BagQuantity = ride.BagQuantity,

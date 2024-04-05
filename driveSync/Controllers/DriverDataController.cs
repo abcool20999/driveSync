@@ -17,31 +17,31 @@ namespace driveSync.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         /// <summary>
-        /// Retrieves a list of passengers from the database.
+        /// Retrieves a list of drivers from the database.
         /// </summary>
         /// <returns>
-        /// An IEnumerable of PassengerDTO objects representing the list of passengers.
+        /// An IEnumerable of DriverDTO objects representing the list of drivers.
         /// </returns>
         /// <example>
-        /// GET: api/PassengerData/ListPassengers
+        /// GET: api/DriverData/ListDrivers
         /// </example>
         [HttpGet]
-        [Route("api/PassengerData/ListPassengers")]
-        public IEnumerable<PassengerDTO> Passengers()
+        [Route("api/DriverData/ListDrivers")]
+        public IEnumerable<DriverDTO> Drivers()
         {
-            List<Passenger> Passengers = db.Passengers.ToList();
-            List<PassengerDTO> PassengerDTOs = new List<PassengerDTO>();
+            List<Driver> Drivers = db.Drivers.ToList();
+            List<DriverDTO> DriverDTOs = new List<DriverDTO>();
 
-            Passengers.ForEach(p => PassengerDTOs.Add(new PassengerDTO()
+            Drivers.ForEach(d => DriverDTOs.Add(new DriverDTO()
             {
-                PassengerId = p.PassengerId,
-                firstName = p.firstName,
-                lastName = p.lastName,
-                username = p.username,
-                email = p.email
+                DriverId = d.DriverId,
+                firstName = d.firstName,
+                lastName = d.lastName,
+                username = d.username,
+                email = d.email
             }));
 
-            return PassengerDTOs;
+            return DriverDTOs;
 
         }
         /// <summary>

@@ -31,6 +31,7 @@ namespace driveSync.Models
 
     public class DriverDTO
     {
+        public string username { get; set; }
         public int DriverId { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
