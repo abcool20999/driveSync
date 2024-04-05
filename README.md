@@ -48,6 +48,6 @@ To run the driveSync App locally:
    - Views: `Passenger`, `Inventory`
    
 2. **Awotunde Abraham**
-   - Models: `Driver.cs`, `Ride.cs`
-   - Controllers: `DriverController`, `DriverDataController`, `RideController`, `RideDataController`, `AdminController`, `AdminDataController`
-   - Views: `Ride`, `Driver`, `Admin`
+   - Models: `Driver.cs`, `Ride.cs`, `Booking.cs`, `Admin`
+   - Controllers: `DriverController`, `DriverDataController`, `RideController`, `RideDataController`, `AdminController`, `AdminDataController`, `BookingController`, `BookingDataController
+   - Views: `Ride`, `Driver`, `Admin`, `Booking`
