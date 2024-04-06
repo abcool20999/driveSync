@@ -110,12 +110,32 @@ namespace driveSync.Controllers
             // Pass user object to the view
             return View();
         }
-    
+
 
         // GET: Passenger/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            //objective is to communicate with my Passenger data api to retrieve one passenger.
+            //curl https://localhost:44332/api/PassengerData/FindPassenger/id
+
+
+            //Establish url connection endpoint i.e client sends info and anticipates a response
+            string url = "FindPassenger/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            //this enables me see if my httpclient is communicating with the data access endpoint 
+
+            Debug.WriteLine("The response code is");
+            Debug.WriteLine(response.StatusCode);
+
+            //objective is to parse the content of the response message into an object of type passenger.
+            PassengerDTO selectedpassenger = response.Content.ReadAsAsync<PassengerDTO>().Result;
+
+            //we use debug.writeline to test and see if its working
+            Debug.WriteLine("passenger received");
+            Debug.WriteLine(selectedpassenger.firstName);
+            //this shows the channel of comm btwn our webserver in our passenger controller and the actual passenger data controller api as we are communicating through an http request
+
+            return View(selectedpassenger);
         }
 
         // GET: Passenger/Add
@@ -163,27 +183,68 @@ namespace driveSync.Controllers
             }
 
         }
-           
 
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Passenger/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            // Retrieve the passenger from the database
+            Passenger passenger = db.Passengers.Find(id);
+
+            // Check if the passenger exists
+            if (passenger == null)
+            {
+                return HttpNotFound(); // Return 404 if passenger is not found
+            }
+
+            // Map Passenger model to PassengerDTO
+            PassengerDTO passengerDTO = new PassengerDTO
+            {
+                PassengerId = passenger.PassengerId,
+                firstName = passenger.firstName,
+                lastName = passenger.lastName,
+                email = passenger.email
+            };
+
+            // Pass the PassengerDTO to the view
+            return View(passengerDTO);
         }
 
-        // POST: Passenger/Edit/5
+        // POST: Passenger/Update/1
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, PassengerDTO passengerDTO)
         {
-            try
-            {
-                // TODO: Add update logic here
+            // Set the passenger ID to match the ID in the route
+            passengerDTO.PassengerId = id;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            // Construct the URL to update the passenger with the given ID
+            string url = "UpdatePassenger/" + id;
+
+            // Serialize the passenger object into JSON payload
+            string jsonpayload = jss.Serialize(passengerDTO);
+
+            // Create HTTP content with JSON payload
+            HttpContent content = new StringContent(jsonpayload);
+
+            // Set the content type of the HTTP request to JSON
+            content.Headers.ContentType.MediaType = "application/json";
+
+            // Send a POST request to update the passenger information
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            // Log the content of the request
+            Debug.WriteLine(content);
+
+            // Check if the request was successful
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                // Redirect to the List action if the update was successful
+                return RedirectToAction("List");
+            }
+            else
+            {
+                // Redirect to the Error action if there was an error during the update
+                return RedirectToAction("Error");
             }
         }
 

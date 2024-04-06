@@ -117,6 +117,40 @@ namespace driveSync.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves information about a specific passenger from the database.
+        /// </summary>
+        /// <param name="id">The ID of the passenger to retrieve.</param>
+        /// <returns>
+        /// An IHttpActionResult containing information about the passenger.
+        /// </returns>
+        /// <example>
+        /// GET: api/PassengerData/FindPassenger/{id}
+        /// </example>
+
+        [ResponseType(typeof(Passenger))]
+        [HttpGet]
+        [Route("api/PassengerData/FindPassenger/{id}")]
+        public IHttpActionResult FindPassenger(int id)
+        {
+            Passenger passenger = db.Passengers.Find(id);
+            PassengerDTO passengerDTO = new PassengerDTO()
+            {
+                PassengerId = passenger.PassengerId,
+                firstName = passenger.firstName,
+                lastName = passenger.lastName,
+                email = passenger.email
+            };
+
+            if (passenger == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(passengerDTO);
+        }
+
+        //GET: Passenger/Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -129,6 +163,61 @@ namespace driveSync.Controllers
         private bool PassengerExists(int id)
         {
             return db.Passengers.Count(e => e.PassengerId == id) > 0;
+        }
+
+
+        /// <summary>
+        /// Updates information about a specific passenger in the database.
+        /// </summary>
+        /// <param name="id">The ID of the passenger to update.</param>
+        /// <param name="passenger">The updated information of the passenger.</param>
+        /// <returns>
+        /// An IHttpActionResult indicating the result of the update operation.
+        /// </returns>
+        /// <example>
+        /// POST: api/PassengerData/UpdatePassenger/5
+        /// </example>
+        [ResponseType(typeof(void))]
+        [HttpPost]
+        [Route("api/PassengerData/UpdatePassenger/{id}")]
+        public IHttpActionResult UpdatePassenger(int id, Passenger passenger)
+        {
+            if (!ModelState.IsValid)
+            {
+                Debug.WriteLine("Model State is invalid");
+                return BadRequest(ModelState);
+            }
+
+            if (id == default)
+            {
+                Debug.WriteLine("ID mismatch");
+                Debug.WriteLine("GET parameter" + id);
+                Debug.WriteLine("POST parameter" + passenger.PassengerId);
+                Debug.WriteLine("POST parameter" + passenger.firstName);
+                Debug.WriteLine("POST parameter" + passenger.lastName);
+                return BadRequest();
+            }
+
+            db.Entry(passenger).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PassengerExists(id))
+                {
+                    Debug.WriteLine("Passenger not found");
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
     }
 }
