@@ -27,9 +27,10 @@ namespace ridesnShare.Controllers
         /// <example>
         /// GET: api/TripData/ListTrips
         /// </example>
+        [ResponseType(typeof(List<Ride>))]
         [HttpGet]
         [Route("api/RideData/ListRides/{id}")]
-        public IEnumerable<Ride> Rides(int id)
+        public List<Ride> Rides(int id)
         {
             List<Ride> Rides = db.Rides.Where(r=>r.DriverId==id).ToList();
             //List<Ride> RideDTOs = new List<Ride>();
