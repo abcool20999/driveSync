@@ -158,7 +158,7 @@ public ActionResult Details(int id)
             //{
                 //var rid = JsonConvert.DeserializeObject<Ride>(response.Content.ReadAsStringAsync().Result);
 
-                return RedirectToAction("List");
+                return RedirectToAction("List", rideentity);
             //}
             //else
             //{
