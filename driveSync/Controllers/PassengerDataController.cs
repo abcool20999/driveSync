@@ -219,5 +219,33 @@ namespace driveSync.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+        /// <summary>
+        /// Deletes a passenger from the database.
+        /// </summary>
+        /// <param name="id">The ID of the passenger to delete.</param>
+        /// <returns>
+        /// An IHttpActionResult indicating the result of the deletion operation.
+        /// </returns>
+        /// <example>
+        /// POST: api/PassengerData/DeletePassenger/5
+        /// </example>
+
+        [ResponseType(typeof(Passenger))]
+        [HttpPost]
+        [Route("api/PassengerData/DeletePassenger/{id}")]
+        public IHttpActionResult DeletePassenger(int id)
+        {
+            Passenger passenger = db.Passengers.Find(id);
+            if (passenger == null)
+            {
+                return NotFound();
+            }
+
+            db.Passengers.Remove(passenger);
+            db.SaveChanges();
+
+            return Ok();
+        }
     }
 }

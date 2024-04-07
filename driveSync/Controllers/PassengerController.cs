@@ -249,9 +249,33 @@ namespace driveSync.Controllers
         }
 
         // GET: Passenger/Delete/5
+        public ActionResult DeleteConfirm(int id)
+        {
+            string url = "FindPassenger/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            PassengerDTO selectedpassenger = response.Content.ReadAsAsync<PassengerDTO>().Result;
+            return View(selectedpassenger);
+
+        }
+
+        // POST: Passenger/Delete/5
+        [HttpPost]
         public ActionResult Delete(int id)
         {
-            return View();
+            string url = "DeletePassenger/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+
         }
 
         // POST: Passenger/Login
