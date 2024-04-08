@@ -119,5 +119,104 @@ namespace ridesnShare.Controllers
             return ride;
         }
 
+        private bool RideExists(int id)
+        {
+            return db.Rides.Count(r => r.RideId == id) > 0;
+        }
+
+        /// <summary>
+        /// Retrieves information about a specific ride from the database.
+        /// </summary>
+        /// <param name="id">The ID of the ride to retrieve.</param>
+        /// <returns>
+        /// An IHttpActionResult containing information about the ride.
+        /// </returns>
+        /// <example>
+        /// GET: api/RideData/FindRide/{id}
+        /// </example>
+
+        [ResponseType(typeof(Ride))]
+        [HttpGet]
+        [Route("api/RideData/FindRide/{id}")]
+        public IHttpActionResult FindRide(int id)
+        {
+            Ride ride = db.Rides.Find(id);
+            RideDTO rideDTO = new RideDTO()
+            {
+                DriverId = ride.DriverId,
+                StartLocation = ride.startLocation,
+                EndLocation = ride.endLocation,
+                Price = ride.price,
+                Time = ride.Time,
+                DayOftheweek = ride.dayOftheweek,
+                LuggageQuantity = ride.LuggageQuantity,
+                LuggageWeight = ride.LuggageWeight,
+                LuggageSize = ride.LuggageSize,
+                BagQuantity = ride.BagQuantity,
+                BagSize = ride.BagSize,
+                BagWeight = ride.BagWeight
+            };
+
+            if (ride == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(rideDTO);
+        }
+        /// <summary>
+        /// Updates information about a specific passenger in the database.
+        /// </summary>
+        /// <param name="id">The ID of the passenger to update.</param>
+        /// <param name="passenger">The updated information of the passenger.</param>
+        /// <returns>
+        /// An IHttpActionResult indicating the result of the update operation.
+        /// </returns>
+        /// <example>
+        /// POST: api/PassengerData/UpdatePassenger/5
+        /// </example>
+        [ResponseType(typeof(void))]
+        [HttpPost]
+        [Route("api/RideData/UpdateRide/{id}")]
+        public IHttpActionResult UpdateRide(int id, Ride ride)
+        {
+            if (!ModelState.IsValid)
+            {
+                Debug.WriteLine("Model State is invalid");
+                return BadRequest(ModelState);
+            }
+
+            if (id == default)
+            {
+                Debug.WriteLine("ID mismatch");
+                Debug.WriteLine("GET parameter" + id);
+                Debug.WriteLine("POST parameter" + ride.StartLocation);
+                Debug.WriteLine("POST parameter" + ride.EndLocation);
+                Debug.WriteLine("POST parameter" + ride.Price);
+                return BadRequest();
+            }
+
+            db.Entry(ride).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RideExists(id))
+                {
+                    Debug.WriteLine("Ride not found");
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
     }
 }
