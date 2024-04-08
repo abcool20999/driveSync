@@ -48,7 +48,8 @@ namespace driveSync.Models
 
     public class RideDTO
     {
-  
+        public int RideId { get; set; }
+
         public string StartLocation { get; set; }
         public string EndLocation { get; set; }
         public string Price { get; set; }

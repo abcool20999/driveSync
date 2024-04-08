@@ -1,4 +1,4 @@
-﻿@model IEnumerable<driveSync.Models.Ride>
+﻿@model IEnumerable<driveSync.Models.RideDTO>
 @{
     ViewBag.Title = "Ride";
 }
@@ -151,11 +151,11 @@
             {
                 <tr>
                     <!-- Display trip details -->
-                    <td>@ride.startLocation</td>
-                    <td>@ride.endLocation</td>
-                    <td>@ride.price</td>
+                    <td>@ride.StartLocation</td>
+                    <td>@ride.EndLocation</td>
+                    <td>@ride.Price</td>
                     <td>@ride.Time</td>
-                    <td>@ride.dayOftheweek</td>
+                    <td>@ride.DayOftheweek</td>
                     <td>@ride.LuggageQuantity</td>
                     <td>@ride.LuggageWeight</td>
                     <td>@ride.LuggageSize</td>

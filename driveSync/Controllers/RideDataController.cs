@@ -30,23 +30,20 @@ namespace ridesnShare.Controllers
         //[ResponseType(typeof(List<Ride>))]
         [HttpGet]
         [Route("api/RideData/ListRides/{id}")]
-        public List<RideDTO> Rides(int id)
+        public IEnumerable<RideDTO> Rides(int id)
         {
-            List<Ride> Rides = db.Rides.Where(r=>r.DriverId==id).ToList();
-            List<RideDTO> rideDTOs = new List<RideDTO>();
-            //List<Ride> RideDTOs = new List<Ride>();
-
-            //Rides.ForEach(r => Rides.Add(new Ride()
-            //{
-            //    //RideId = r.RideId,
-            //    DriverId = r.DriverId,
-            //    StartLocation = r.startLocation,
-            //    EndLocation = r.endLocation,
-            //    Price = r.price,
-            //    Time = r.Time,
-            //    dayOftheweek = r.dayOftheweek
-            //}));
-
+            IEnumerable<Ride> Rides = db.Rides.Where(r=>r.DriverId==id);
+            IEnumerable<RideDTO> rideDTOs = Rides.Select(r => new RideDTO()
+            {
+                //RideId = r.RideId,
+                DriverId = r.DriverId,
+                StartLocation = r.startLocation,
+                EndLocation = r.endLocation,
+                Price = r.price,
+                Time = r.Time,
+                DayOftheweek = r.dayOftheweek
+            });
+           
             return rideDTOs;
 
         }

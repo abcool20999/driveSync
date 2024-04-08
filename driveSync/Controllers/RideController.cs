@@ -41,7 +41,7 @@ namespace driveSync.Controllers
                 {
                     // Parse JSON response into a list of RideDTO objects
                     var responseData = response.Content.ReadAsStringAsync().Result;
-                    IEnumerable<Ride> rides = jss.Deserialize<IEnumerable<Ride>>(responseData);
+                    IEnumerable<RideDTO> rides = jss.Deserialize<IEnumerable<RideDTO>>(responseData);
 
                     // Debug info
                     Debug.WriteLine("Number of rides received: " + rides.Count());
