@@ -34,7 +34,7 @@ namespace driveSync.Controllers
                 string url = "ListRides/"+ride.DriverId;
 
                 // Send request to API to retrieve list of rides
-                HttpResponseMessage response = client.GetAsync(url).Result;
+                var response = client.GetAsync(url).Result;
 
                 // Check if response is successful
                 if (response.IsSuccessStatusCode)

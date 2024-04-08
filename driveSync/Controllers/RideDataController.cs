@@ -27,12 +27,13 @@ namespace ridesnShare.Controllers
         /// <example>
         /// GET: api/TripData/ListTrips
         /// </example>
-        [ResponseType(typeof(List<Ride>))]
+        //[ResponseType(typeof(List<Ride>))]
         [HttpGet]
         [Route("api/RideData/ListRides/{id}")]
-        public List<Ride> Rides(int id)
+        public List<RideDTO> Rides(int id)
         {
             List<Ride> Rides = db.Rides.Where(r=>r.DriverId==id).ToList();
+            List<RideDTO> rideDTOs = new List<RideDTO>();
             //List<Ride> RideDTOs = new List<Ride>();
 
             //Rides.ForEach(r => Rides.Add(new Ride()
@@ -46,7 +47,7 @@ namespace ridesnShare.Controllers
             //    dayOftheweek = r.dayOftheweek
             //}));
 
-            return Rides;
+            return rideDTOs;
 
         }
         /// <summary>
