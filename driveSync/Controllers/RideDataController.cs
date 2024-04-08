@@ -41,7 +41,13 @@ namespace ridesnShare.Controllers
                 EndLocation = r.endLocation,
                 Price = r.price,
                 Time = r.Time,
-                DayOftheweek = r.dayOftheweek
+                DayOftheweek = r.dayOftheweek,
+                LuggageQuantity = r.LuggageQuantity,
+                LuggageWeight = r.LuggageWeight,
+                LuggageSize = r.LuggageSize,
+                BagQuantity = r.BagQuantity,
+                BagSize = r.BagSize,
+                BagWeight = r.BagWeight
             });
            
             return rideDTOs;
