@@ -138,7 +138,7 @@ public ActionResult Details(int id)
             //    }
             //};
             
-            //convert trip object into a json format to then send to our api
+            //convert ride object into a json format to then send to our api
             JavaScriptSerializer jss = new JavaScriptSerializer();
             string jsonpayload = jss.Serialize(rideentity);
 
@@ -167,24 +167,75 @@ public ActionResult Details(int id)
         }
 
         // GET: Ride/Edit/5
+        private ApplicationDbContext db = new ApplicationDbContext();
+       
         public ActionResult Edit(int id)
         {
-            return View();
+            // Retrieve the ride from the database
+            Ride ride = db.Rides.Find(id);
+
+            // Check if the ride exists
+            if (ride == null)
+            {
+                return HttpNotFound(); // Return 404 if ride is not found
+            }
+
+            // Map Ride model to RideDTO
+            RideDTO rideDTO = new RideDTO
+            {
+                DriverId = ride.DriverId,
+                StartLocation = ride.startLocation,
+                EndLocation = ride.endLocation,
+                Price = ride.price,
+                Time = ride.Time,
+                DayOftheweek = ride.dayOftheweek,
+                LuggageQuantity = ride.LuggageQuantity,
+                LuggageWeight = ride.LuggageWeight,
+                LuggageSize = ride.LuggageSize,
+                BagQuantity = ride.BagQuantity,
+                BagSize = ride.BagSize,
+                BagWeight = ride.BagWeight
+            };
+
+            // Pass the RideDTO to the view
+            return View(rideDTO);
         }
 
-        // POST: Ride/Edit/5
+        // POST: Ride/Update/1
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, RideDTO rideDTO)
         {
-            try
-            {
-                // TODO: Add update logic here
+            // Set the driver ID to match the ID in the route
+            rideDTO.DriverId = id;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            // Construct the URL to update the ride with the given ID
+            string url = "UpdateRide/" + id;
+
+            // Serialize the ride object into JSON payload
+            string jsonpayload = jss.Serialize(rideDTO);
+
+            // Create HTTP content with JSON payload
+            HttpContent content = new StringContent(jsonpayload);
+
+            // Set the content type of the HTTP request to JSON
+            content.Headers.ContentType.MediaType = "application/json";
+
+            // Send a POST request to update the ride information
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            // Log the content of the request
+            Debug.WriteLine(content);
+
+            // Check if the request was successful
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                // Redirect to the List action if the update was successful
+                return RedirectToAction("List");
+            }
+            else
+            {
+                // Redirect to the Error action if there was an error during the update
+                return RedirectToAction("Error");
             }
         }
 

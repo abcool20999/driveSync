@@ -1,7 +1,6 @@
-﻿﻿@model driveSync.Models.PassengerDTO
-
+﻿@model driveSync.Models.RideDTO
 @{
-    ViewBag.Title = "Update Passenger";
+    ViewBag.Title = "Update Ride";
 }
 
 <style>
@@ -71,30 +70,70 @@
         }
 </style>
 
+<h2>Update Ride</h2>
+<!-- Trip Information-->
+<form action="/Ride/Update" method="POST">
+    <div>
+        <input type="hidden" value=@Model.DriverId name="DriverId" />
+    </div>
 
-<h2>Update Passenger</h2>
+    <div>
+        <label>startLocation:</label><input type="text" name="@Model.StartLocation" />
+    </div>
+    <div>
+        <label>endLocation:</label><input type="text" name="@Model.EndLocation" />
+    </div>
+    <div>
+        <label>price:</label><input type="text" name="@Model.Price" />
+    </div>
+    <div>
+        <label>Time:</label><input type="text" name="@Model.Time" />
+    </div>
+    <div>
+        <label>dayOftheweek:</label><input type="text" name="@Model.DayOftheweek" />
+    </div>
+    <fieldset>
 
-<form action="/Passenger/Update" method="post">
-    <!-- Add a hidden input field for the id -->
-    <input type="hidden" name="id" value="@Model.PassengerId" />
 
-    <div>
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" value="@Model.firstName" />
-    </div>
-    <div>
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" value="@Model.lastName" />
-    </div>
-    <div>
-        <label for="username">user name:</label>
-        <input type="text" id="username" name="username" value="@Model.username" />
-    </div>
-    <div>
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" value="@Model.email" />
-    </div>
-    <div>
-        <input type="submit" value="Update Passenger" />
-    </div>
+        <legend>
+            <label>Luggage:</label>
+        </legend>
+
+        @*<input type="text" name="ItemName" />*@
+
+        <div>
+            <label>Quantity:</label><input type="text" name="@Model.LuggageQuantity" />
+        </div>
+        <div>
+            <label>Weight:</label><input type="text" name="@Model.LuggageWeight" />
+        </div>
+        <div>
+            <label>Size:</label><input type="text" name="@Model.LuggageSize" />
+        </div>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            <label>Bag:</label>
+        </legend>
+        <div>
+
+            @*<input type="text" name="ItemName" />*@
+
+        </div>
+        <div>
+            <label>Quantity:</label><input type="text" name="@Model.BagQuantity" />
+        </div>
+        <div>
+            <label>Weight:</label><input type="text" name="@Model.BagWeight" />
+        </div>
+        <div>
+            <label>Size:</label><input type="text" name="@Model.BagSize" />
+        </div>
+        <div>
+            <input type="submit" value="Update Ride" />
+        </div>
+    </fieldset>
+
 </form>
