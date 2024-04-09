@@ -178,7 +178,7 @@ namespace ridesnShare.Controllers
         [ResponseType(typeof(void))]
         [HttpPost]
         [Route("api/RideData/UpdateRide/{id}")]
-        public IHttpActionResult UpdateRide(int id, Ride ride)
+        public IHttpActionResult UpdateRide(int id, RideDTO rideDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -190,13 +190,13 @@ namespace ridesnShare.Controllers
             {
                 Debug.WriteLine("ID mismatch");
                 Debug.WriteLine("GET parameter" + id);
-                Debug.WriteLine("POST parameter" + ride.StartLocation);
-                Debug.WriteLine("POST parameter" + ride.EndLocation);
-                Debug.WriteLine("POST parameter" + ride.Price);
+                Debug.WriteLine("POST parameter" + rideDTO.StartLocation);
+                Debug.WriteLine("POST parameter" + rideDTO.EndLocation);
+                Debug.WriteLine("POST parameter" + rideDTO.Price);
                 return BadRequest();
             }
 
-            db.Entry(ride).State = EntityState.Modified;
+            db.Entry(rideDTO).State = EntityState.Modified;
 
             try
             {

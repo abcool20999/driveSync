@@ -206,7 +206,7 @@ public ActionResult Details(int id)
         public ActionResult Update(int id, RideDTO rideDTO)
         {
             // Set the driver ID to match the ID in the route
-            rideDTO.DriverId = id;
+            rideDTO.RideId = id;
 
             // Construct the URL to update the ride with the given ID
             string url = "UpdateRide/" + id;
