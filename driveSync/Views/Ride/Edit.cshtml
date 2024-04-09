@@ -72,9 +72,9 @@
 
 <h2>Update Ride</h2>
 <!-- Trip Information-->
-<form action="/Ride/Update" method="POST">
+<form action="/Ride/Update/@Model.RideId" method="POST">
     <div>
-        <input type="hidden" value=@Model.DriverId name="DriverId" />
+        <input type="hidden" value=@Model.RideId name="RideId" />
     </div>
 
     <div>

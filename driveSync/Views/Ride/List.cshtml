@@ -117,7 +117,7 @@
 <div class="cnt">
     <!-- Header -->
     <h2>List of Rides</h2>
-    <!-- Link to add a new trip -->
+    <!-- Link to add a new ride -->
     <a href="/Ride/Add" class="mbtn">Add a Ride</a>
 
     <!-- Search form -->
@@ -128,7 +128,7 @@
         </div>
     </form>
 
-    <!-- Trips table -->
+    <!-- Rides table -->
     <table>
         <thead>
             <tr>
@@ -150,7 +150,7 @@
             @foreach (var ride in Model)
             {
                 <tr>
-                    <!-- Display trip details -->
+                    <!-- Display ride details -->
                     <td>@ride.StartLocation</td>
                     <td>@ride.EndLocation</td>
                     <td>@ride.Price</td>
