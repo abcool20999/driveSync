@@ -111,22 +111,40 @@ namespace driveSync.Controllers
             }
         }
 
-        // GET: User/Details/5
+        // GET: Driver/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            //objective is to communicate with my Driver data api to retrieve one driver.
+            //curl https://localhost:44332/api/DriverData/FindDriver/id
+
+
+            //Establish url connection endpoint i.e client sends info and anticipates a response
+            string url = "FindDriver/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            //this enables me see if my httpclient is communicating with the data access endpoint 
+
+            Debug.WriteLine("The response code is");
+            Debug.WriteLine(response.StatusCode);
+
+            //objective is to parse the content of the response message into an object of type driver.
+            DriverDTO selecteddriver = response.Content.ReadAsAsync<DriverDTO>().Result;
+
+            //we use debug.writeline to test and see if its working
+            Debug.WriteLine("driver received");
+            Debug.WriteLine(selecteddriver.firstName);
+            //this shows the channel of comm btwn our webserver in our driver controller and the actual driver data controller api as we are communicating through an http request
+
+            return View(selecteddriver);
         }
 
-        // GET: User/Create
+        // GET: Driver/Add
         public ActionResult Add()
         {
             return View();
         }
 
-        // POST: User/Create
         // POST: Driver/Create
         [HttpPost]
-
         public ActionResult AddDriver(Driver driver)
         {
             Debug.WriteLine("the inputted driver name is :");
@@ -162,33 +180,101 @@ namespace driveSync.Controllers
             }
 
         }
-
-        // GET: User/Edit/5
+        private ApplicationDbContext db = new ApplicationDbContext();
+        // GET: Driver/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            // Retrieve the driver from the database
+            Driver driver = db.Drivers.Find(id);
+
+            // Check if the driver exists
+            if (driver == null)
+            {
+                return HttpNotFound(); // Return 404 if driver is not found
+            }
+
+            // Map Driver model to DriverDTO
+            DriverDTO driverDTO = new DriverDTO
+            {
+                DriverId = driver.DriverId,
+                username = driver.username,
+                firstName = driver.firstName,
+                lastName = driver.lastName,
+                email = driver.email,
+                Age = driver.Age,
+                CarType = driver.CarType
+            };
+
+            // Pass the DeiverDTO to the view
+            return View(driverDTO);
         }
 
-        // POST: User/Edit/5
+        // POST: Driver/Update/1
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, DriverDTO driverDTO)
         {
-            try
-            {
-                // TODO: Add update logic here
+            // Set the driver ID to match the ID in the route
+            driverDTO.DriverId = id;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            // Construct the URL to update the driver with the given ID
+            string url = "UpdateDriver/" + id;
+
+            // Serialize the driver object into JSON payload
+            string jsonpayload = jss.Serialize(driverDTO);
+
+            // Create HTTP content with JSON payload
+            HttpContent content = new StringContent(jsonpayload);
+
+            // Set the content type of the HTTP request to JSON
+            content.Headers.ContentType.MediaType = "application/json";
+
+            // Send a POST request to update the driver information
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            // Log the content of the request
+            Debug.WriteLine(content);
+
+            // Check if the request was successful
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                // Redirect to the List action if the update was successful
+                return RedirectToAction("List");
+            }
+            else
+            {
+                // Redirect to the Error action if there was an error during the update
+                return RedirectToAction("Error");
             }
         }
 
-        // GET: User/Delete/5
+        // GET: Driver/Delete/5
+        public ActionResult DeleteConfirm(int id)
+        {
+            string url = "FindDriver/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            DriverDTO selecteddriver = response.Content.ReadAsAsync<DriverDTO>().Result;
+            return View(selecteddriver);
+
+        }
+
+        // POST: Driver/Delete/5
+        [HttpPost]
         public ActionResult Delete(int id)
         {
-            return View();
+            string url = "DeleteDriver/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+
         }
 
         // POST: Passenger/Login
@@ -200,20 +286,5 @@ namespace driveSync.Controllers
 
         }
 
-        // POST: User/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
