@@ -51,9 +51,13 @@ namespace driveSync.Models
         public string dayOftheweek { get; set; }
 
         public string ItemName { get; set; }
-        public string Quantity { get; set; }
-        public string Weight { get; set; }
-        public string Size { get; set; }
+        public string LuggageQuantity { get; set; }
+        public string LuggageWeight { get; set; }
+        public string LuggageSize { get; set; }
+
+        public string BagQuantity { get; set; }
+        public string BagWeight { get; set; }
+        public string BagSize { get; set; }
 
         public DateTime Time { get; set; }
 

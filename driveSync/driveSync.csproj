@@ -219,6 +219,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\AvailableInventory.cs" />
+    <Compile Include="Models\AvailableRidesDTO.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -303,12 +305,6 @@
     <Content Include="Views\Booking\List.cshtml" />
     <Content Include="Views\Booking\DeleteConfirm.cshtml" />
     <Content Include="Views\Booking\EditBooking.cshtml" />
-    <Content Include="Views\Booking\ListBookingsForPassenger.cshtml" />
-    <Content Include="Views\Booking\ListBookingsForDriver.cshtml" />
-    <Content Include="Views\Booking\EditBookingForPassenger.cshtml" />
-    <Content Include="Views\Booking\EditBookingForDriver.cshtml" />
-    <Content Include="Views\Booking\DeleteConfirmPassenger.cshtml" />
-    <Content Include="Views\Booking\DeleteConfirmDriver.cshtml" />
     <Content Include="Views\Passenger\List.cshtml" />
     <Content Include="Views\Passenger\DeleteConfirm.cshtml" />
     <Content Include="Views\Passenger\Details.cshtml" />
@@ -338,17 +334,7 @@
     <Content Include="Views\Inventory\Error.cshtml" />
     <Content Include="Views\Passenger\PassengerProfile.cshtml" />
     <Content Include="Views\Driver\DriverProfile.cshtml" />
-    <Content Include="Views\Admin\ListBookingsForTrip.cshtml" />
-    <Content Include="Views\Admin\Add.cshtml" />
-    <Content Include="Views\Admin\EditPassenger.cshtml" />
-    <Content Include="Views\Admin\DeleteConfirmPassenger.cshtml" />
     <Content Include="Views\Admin\AdminLogin.cshtml" />
-    <Content Include="Views\Admin\AddPassenger.cshtml" />
-    <Content Include="Views\Admin\AddDriver.cshtml" />
-    <Content Include="Views\Admin\EditDriver.cshtml" />
-    <Content Include="Views\Admin\ListPassengers.cshtml" />
-    <Content Include="Views\Admin\ListDrivers.cshtml" />
-    <Content Include="Views\Admin\DeleteConfirmDriver.cshtml" />
     <Content Include="Views\Admin\AdminProfile.cshtml" />
     <Content Include="Views\Passenger\Add.cshtml" />
   </ItemGroup>
