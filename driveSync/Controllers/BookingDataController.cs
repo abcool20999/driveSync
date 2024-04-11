@@ -31,11 +31,10 @@ namespace driveSync.Controllers
         [Route("api/BookingData/ListBookings")]
         public IEnumerable<BookingDTO> ListBookings()
         {
-            List<Ride> rides = db.Rides.Include(t => t.Driver).Include(d => d.Bookings).ToList();
+            List<Booking> bookings = db.Bookings.ToList();
             List<BookingDTO> BookingDTOs = new List<BookingDTO>();
-            foreach (Ride ride in rides)
-            {
-                foreach (Booking booking in ride.Bookings)
+           
+          foreach (Booking booking in bookings)
                 {
                     var passenger = db.Passengers.FirstOrDefault(p => p.PassengerId == booking.PassengerId);
                     BookingDTOs.Add(new BookingDTO()
@@ -55,7 +54,7 @@ namespace driveSync.Controllers
                         BagSize = booking.Ride.BagSize,
                         BagQuantity = booking.Ride.BagQuantity
                     });
-                }
+                
             }
 
             return BookingDTOs;
