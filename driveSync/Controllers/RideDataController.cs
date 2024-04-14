@@ -19,17 +19,17 @@ namespace ridesnShare.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         /// <summary>
-        /// Retrieves a list of trips from the database.
+        /// Retrieves a list of rides for a particular driver from the database.
         /// </summary>
         /// <returns>
-        /// An IEnumerable of TripDTO objects representing the list of trips.
+        /// An IEnumerable of RideDTO objects representing the list of rides.
         /// </returns>
         /// <example>
-        /// GET: api/TripData/ListTrips
+        /// GET: api/RideData/ListRides
         /// </example>
         //[ResponseType(typeof(List<Ride>))]
         [HttpGet]
-        [Route("api/RideData/ListRides/{id}")]
+        [Route("api/RideData/ListRidesForDriver/{id}")]
         public IEnumerable<RideDTO> Rides(int id)
         {
             IEnumerable<Ride> Rides = db.Rides.Where(r=>r.DriverId==id);
@@ -54,7 +54,7 @@ namespace ridesnShare.Controllers
 
         }
         /// <summary>
-        /// Adds a new ride to the database.
+        /// Allows a particular driver to add a new ride to the database.
         /// </summary>
         /// <param name="ride">The ride object containing information about the new ride.</param>
         /// <returns>
@@ -88,30 +88,6 @@ namespace ridesnShare.Controllers
                 //return BadRequest("Driver not found");
                 return null;
             }
-
-            // Create an instance of Inventory
-            //Inventory inventory = new Inventory
-            //{
-            //    ItemName = ride.ItemName,
-            //    Weight = ride.Weight,
-            //    Size = ride.Size,
-            //    Quantity = ride.Quantity
-            //};
-
-            //// Add the inventory to the database
-            //db.Inventories.Add(inventory);
-            //db.SaveChanges();
-
-            // Create an instance of Ride
-            //Ride newRide = new Ride
-            //{
-            //    StartLocation = ride.StartLocation,
-            //    EndLocation = ride.EndLocation,
-            //    Price = ride.Price,
-            //    Time = ride.Time,
-            //    DayOfTheWeek = ride.DayOfTheWeek,
-            //};
-
             // Add the ride to the database
             db.Rides.Add(ride);
             db.SaveChanges();
@@ -165,15 +141,15 @@ namespace ridesnShare.Controllers
             return Ok(rideDTO);
         }
         /// <summary>
-        /// Updates information about a specific passenger in the database.
+        /// Enables the Driver to Update information about a specific ride in the database.
         /// </summary>
-        /// <param name="id">The ID of the passenger to update.</param>
-        /// <param name="passenger">The updated information of the passenger.</param>
+        /// <param name="id">The ID of the ride to update.</param>
+        /// <param name="passenger">The updated information of the ride.</param>
         /// <returns>
         /// An IHttpActionResult indicating the result of the update operation.
         /// </returns>
         /// <example>
-        /// POST: api/PassengerData/UpdatePassenger/5
+        /// POST: api/RideData/UpdateRide/5
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
