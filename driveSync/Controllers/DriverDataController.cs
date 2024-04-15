@@ -17,16 +17,16 @@ namespace driveSync.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         /// <summary>
-        /// Retrieves a list of drivers from the database.
+        /// Enables Admin to retrieve a list of drivers from the database.
         /// </summary>
         /// <returns>
         /// An IEnumerable of DriverDTO objects representing the list of drivers.
         /// </returns>
         /// <example>
-        /// GET: api/DriverData/ListDrivers
+        /// GET: api/DriverData/ListDriversForAdmin
         /// </example>
         [HttpGet]
-        [Route("api/DriverData/ListDrivers")]
+        [Route("api/DriverData/ListDriversForAdmin")]
         public IEnumerable<DriverDTO> Drivers()
         {
             List<Driver> Drivers = db.Drivers.ToList();
@@ -47,12 +47,12 @@ namespace driveSync.Controllers
 
         }
         /// <summary>
-        /// Validates a passenger's credentials by checking if the user exists in the database and if the provided password matches.
+        /// Validates a driver's credentials by checking if the user exists in the database and if the provided password matches.
         /// </summary>
-        /// <param name="passenger">The Passenger object containing username and password for validation.</param>
+        /// <param name="driver">The Driver object containing username and password for validation.</param>
         /// <returns>
         /// IHttpActionResult representing the result of the validation process:
-        ///   - If the user exists and the password matches, returns Ok with the validated Passenger object.
+        ///   - If the user exists and the password matches, returns Ok with the validated Driver object.
         ///   - If the user exists but the password does not match, returns BadRequest with a message indicating incorrect password.
         ///   - If the user does not exist, returns BadRequest with a message indicating that the user was not found.
         /// </returns>
@@ -94,7 +94,7 @@ namespace driveSync.Controllers
         }
 
         // <summary>
-        /// Adds a new driver to the database.
+        /// Enables Admin to add a new driver to the database.
         /// </summary>
         /// <param name="driver">The driver object containing information about the new driver.</param>
         /// <returns>
@@ -119,7 +119,7 @@ namespace driveSync.Controllers
         }
 
         /// <summary>
-        /// Retrieves information about a specific driver from the database.
+        /// Enables admin retrieve information about a specific driver from the database.
         /// </summary>
         /// <param name="id">The ID of the driver to retrieve.</param>
         /// <returns>
@@ -169,7 +169,7 @@ namespace driveSync.Controllers
         }
 
         /// <summary>
-        /// Updates information about a specific driver in the database.
+        /// Enables Admin update information about a specific driver in the database.
         /// </summary>
         /// <param name="id">The ID of the driver to update.</param>
         /// <param name="driver">The updated information of the driver.</param>
@@ -223,7 +223,7 @@ namespace driveSync.Controllers
         }
 
         /// <summary>
-        /// Deletes a driver from the database.
+        /// Enables Admin to delete a driver from the database.
         /// </summary>
         /// <param name="id">The ID of the driver to delete.</param>
         /// <returns>

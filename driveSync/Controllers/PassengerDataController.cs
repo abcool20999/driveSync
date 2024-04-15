@@ -17,16 +17,16 @@ namespace driveSync.Controllers
         {
             private ApplicationDbContext db = new ApplicationDbContext();
             /// <summary>
-            /// Retrieves a list of passengers from the database.
+            /// Allows Admin to retrieve a list of passengers from the database.
             /// </summary>
             /// <returns>
             /// An IEnumerable of PassengerDTO objects representing the list of passengers.
             /// </returns>
             /// <example>
-            /// GET: api/PassengerData/ListPassengers
+            /// GET: api/PassengerData/ListPassengersForAdmin
             /// </example>
             [HttpGet]
-            [Route("api/PassengerData/ListPassengers")]
+            [Route("api/PassengerData/ListPassengersForAdmin")]
             public IEnumerable<PassengerDTO> Passengers()
             {
                 List<Passenger> Passengers = db.Passengers.ToList();
@@ -47,7 +47,7 @@ namespace driveSync.Controllers
     
 
         // <summary>
-        /// Adds a new passenger to the database.
+        /// Enables admin to add a new passenger to the database.
         /// </summary>
         /// <param name="passenger">The passenger object containing information about the new passenger.</param>
         /// <returns>
@@ -118,7 +118,7 @@ namespace driveSync.Controllers
         }
 
         /// <summary>
-        /// Retrieves information about a specific passenger from the database.
+        /// Enables Admin to retrieve information about a specific passenger from the database.
         /// </summary>
         /// <param name="id">The ID of the passenger to retrieve.</param>
         /// <returns>
@@ -167,7 +167,7 @@ namespace driveSync.Controllers
 
 
         /// <summary>
-        /// Updates information about a specific passenger in the database.
+        /// Helps admin to update information about a specific passenger in the database.
         /// </summary>
         /// <param name="id">The ID of the passenger to update.</param>
         /// <param name="passenger">The updated information of the passenger.</param>
@@ -221,7 +221,7 @@ namespace driveSync.Controllers
         }
 
         /// <summary>
-        /// Deletes a passenger from the database.
+        /// Enables admin to delete a passenger from the database.
         /// </summary>
         /// <param name="id">The ID of the passenger to delete.</param>
         /// <returns>
