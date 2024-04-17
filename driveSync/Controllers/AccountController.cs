@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -10,9 +7,19 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using driveSync.Models;
 
+public enum UserType
+{
+    Passenger,
+    Driver,
+    Admin
+}
+
 namespace driveSync.Controllers
+
+
 {
     [Authorize]
+
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -52,7 +59,8 @@ namespace driveSync.Controllers
             }
         }
 
-        //
+        
+
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -147,6 +155,7 @@ namespace driveSync.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -155,8 +164,30 @@ namespace driveSync.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    string role = ""; // Initialize role variable
+
+                    //Determine the role based on some condition, for example, user type in the registration form
+                    if (model.UserType == UserType.Passenger)
+                        {
+                            role = "Passenger";
+                        }
+                        else if (model.UserType == UserType.Driver)
+                        {
+                            role = "Driver";
+                        }
+                        else if (model.UserType == UserType.Admin)
+                        {
+                            role = "Admin";
+                        }
+
+                    if (!string.IsNullOrEmpty(role))
+                    {
+                        // Add the determined role to the user
+                        await UserManager.AddToRoleAsync(user, role);
+                    }
+
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -171,6 +202,10 @@ namespace driveSync.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+      
+  
+
 
         //
         // GET: /Account/ConfirmEmail
@@ -434,6 +469,8 @@ namespace driveSync.Controllers
                 return HttpContext.GetOwinContext().Authentication;
             }
         }
+
+        public UserType UserType { get; private set; }
 
         private void AddErrors(IdentityResult result)
         {

@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -33,6 +34,8 @@ namespace driveSync.Models
         public DbSet<Ride> Rides { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+
+        public DbSet<Enum> Enum { get; set; }
 
 
 

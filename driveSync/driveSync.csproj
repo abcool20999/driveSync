@@ -214,6 +214,10 @@
     <Compile Include="Migrations\202404030929422_addrides.Designer.cs">
       <DependentUpon>202404030929422_addrides.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202404170659148_enum.cs" />
+    <Compile Include="Migrations\202404170659148_enum.Designer.cs">
+      <DependentUpon>202404170659148_enum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -221,6 +225,7 @@
     <Compile Include="Models\AvailableRidesDTO.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -372,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404030929422_addrides.resx">
       <DependentUpon>202404030929422_addrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404170659148_enum.resx">
+      <DependentUpon>202404170659148_enum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

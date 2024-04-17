@@ -86,6 +86,11 @@ namespace driveSync
             }
             return manager;
         }
+
+        internal async Task AddToRoleAsync(ApplicationUser user, string role)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     // Configure the application sign-in manager which is used in this application.
