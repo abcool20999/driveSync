@@ -111,6 +111,49 @@ namespace driveSync.Controllers
             }
         }
 
+        // GET: /Driver/Show/{id}
+        // Route to /Views/Driver/Show.cshtml
+        // It will show the details about the driver
+        public ActionResult Show(int id)
+        {
+            Driver selectedDriver = DriverController.FindDriver(id);
+            return View("Show", selectedDriver);
+        }
+
+        private static Driver FindDriver(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        // GET: Driver/List/DriverSearchKey={value}
+        // Go to /Views/Driver/List.cshtml
+        public ActionResult ListWithSearchKey(string DriverSearchKey)
+        {
+            IEnumerable<DriverDTO> drivers = DriverController.ListDrivers(DriverSearchKey);
+            return View("List", drivers);
+        }
+
+        private static IEnumerable<DriverDTO> ListDrivers(string driverSearchKey)
+        {
+            throw new NotImplementedException();
+        }
+
+        // GET: Driver/New
+        // Go to /Views/Driver/New.cshtml
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        // GET: Driver/Search/{DriverSearchKey}
+        // Route to /Views/Driver/List.cshtml
+        // Retrieves a list of drivers whose names match the search key entered in the search textbox.
+        public ActionResult Search(string DriverSearchKey)
+        {
+            IEnumerable<DriverDTO> matchingDrivers = DriverController.ListDrivers(DriverSearchKey);
+            return View("List", matchingDrivers);
+        }
+
         // GET: Driver/Details/5
         public ActionResult Details(int id)
         {

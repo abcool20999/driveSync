@@ -154,6 +154,43 @@ namespace driveSync.Controllers
             return Ok(driverDTO);
         }
 
+        /// <summary>
+        /// Enables admin retrieve a list of drivers whose names match the search key entered in the search textbox.
+        /// </summary>
+        /// <param name="DriverSearchKey">The search key used to find matching passengers.</param>
+        /// <returns>
+        /// An IEnumerable of DriverDTO objects representing the list of drivers matching the search key.
+        /// </returns>
+        /// <example>
+        /// GET api/DriverData/ListDrivers/{DriverSearchKey}
+        /// </example>
+        [HttpGet]
+        [Route("api/DriverData/ListDrivers/{DriverSearchKey}")]
+        public IEnumerable<DriverDTO> ListDrivers(string DriverSearchKey)
+        {
+            Debug.WriteLine("Trying to do an API search for " + DriverSearchKey);
+
+            // Convert the search key to lower case for case-insensitive search
+            string searchKeyLower = DriverSearchKey.ToLower();
+
+            // Query the database using LINQ
+            var matchingDrivers = db.Drivers
+                .Where(d => d.firstName.ToLower().Contains(searchKeyLower) || d.lastName.ToLower().Contains(searchKeyLower))
+                .ToList();
+
+            // Convert the matching drivers to DTOs
+            List<DriverDTO> driverDTOs = matchingDrivers.Select(d => new DriverDTO
+            {
+                DriverId = d.DriverId,
+                firstName = d.firstName,
+                lastName = d.lastName,
+                username = d.username,
+                email = d.email
+            }).ToList();
+
+            return driverDTOs;
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

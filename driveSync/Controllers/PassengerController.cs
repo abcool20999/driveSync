@@ -103,14 +103,14 @@ namespace driveSync.Controllers
             }
         }
 
-            // GET: /Passenger/Show/{id}
-            // Route to /Views/Passenger/Show.cshtml
-            // It will show the details about the passenger
-            public ActionResult Show(int id)
-            {
-                Passenger selectedPassenger = PassengerController.FindPassenger(id);
-                return View("Show", selectedPassenger);
-            }
+        // GET: /Passenger/Show/{id}
+        // Route to /Views/Passenger/Show.cshtml
+        // It will show the details about the passenger
+        public ActionResult Show(int id)
+        {
+            Passenger selectedPassenger = PassengerController.FindPassenger(id);
+            return View("Show", selectedPassenger);
+        }
 
         private static Passenger FindPassenger(int id)
         {
@@ -137,14 +137,14 @@ namespace driveSync.Controllers
                 return View();
             }
 
-            // GET: Passenger/Search/{PassengerSearchKey}
-            // Route to /Views/Passenger/List.cshtml
-            // Retrieves a list of passengers whose names match the search key entered in the search textbox.
-            public ActionResult Search(string PassengerSearchKey)
-            {
-                IEnumerable<PassengerDTO> matchingPassengers = PassengerController.ListPassengers(PassengerSearchKey);
-                return View("List", matchingPassengers);
-            }
+        // GET: Passenger/Search/{PassengerSearchKey}
+        // Route to /Views/Passenger/List.cshtml
+        // Retrieves a list of passengers whose names match the search key entered in the search textbox.
+        public ActionResult Search(string PassengerSearchKey)
+        {
+            IEnumerable<PassengerDTO> matchingPassengers = PassengerController.ListPassengers(PassengerSearchKey);
+            return View("List", matchingPassengers);
+        }
         
 
 

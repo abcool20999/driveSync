@@ -229,6 +229,87 @@ namespace driveSync.Controllers
             return Ok(bookingDTO);
         }
 
+        // <summary>
+        /// Enables only Admin to update information about a specific booking in the database.
+        /// </summary>
+        /// <param name="id">The ID of the booking to be updated.</param>
+        /// <param name="bookingDTO">The updated information of the booking.</param>
+        /// <returns>
+        /// An IHttpActionResult indicating the result of the update operation:
+        ///   - If the ModelState is not valid, returns BadRequest with ModelState errors.
+        ///   - If the provided ID is default, returns BadRequest indicating ID mismatch.
+        ///   - If the booking is successfully updated, returns NoContent status code.
+        ///   - If the booking is not found, returns NotFound status code.
+        /// </returns>
+        /// <example>
+        /// POST: api/BookingData/UpdateBooking/5
+        /// </example>
+        [Authorize]
+        [ResponseType(typeof(void))]
+        [HttpPost]
+        [Route("api/BookingData/UpdateBooking/{id}")]
+        public IHttpActionResult UpdateBooking(int id, BookingDTO bookingDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                Debug.WriteLine("Model State is invalid");
+                return BadRequest(ModelState);
+            }
+
+            if (id == default)
+            {
+                Debug.WriteLine("ID mismatch");
+                Debug.WriteLine("GET parameter" + id);
+                Debug.WriteLine("POST parameter" + bookingDTO.Time);
+                Debug.WriteLine("POST parameter" + bookingDTO.dayOftheweek);
+                Debug.WriteLine("POST parameter" + bookingDTO.endLocation);
+                return BadRequest();
+            }
+            var passenger = db.Passengers.FirstOrDefault(x => x.PassengerId == bookingDTO.PassengerId);
+            var driver = db.Drivers.FirstOrDefault(x => x.DriverId == bookingDTO.DriverId);
+            var ride = db.Rides.FirstOrDefault(x => x.RideId == bookingDTO.RideId);
+            var booking = db.Bookings.FirstOrDefault(x => x.BookingId == bookingDTO.BookingId);
+
+            passenger.firstName = bookingDTO.passengerFirstName;
+            driver.firstName = bookingDTO.driverFirstName;
+            ride.startLocation = bookingDTO.startLocation;
+            ride.endLocation = bookingDTO.endLocation;
+            ride.price = bookingDTO.price;
+            ride.Time = bookingDTO.Time;
+            ride.dayOftheweek = booking.Ride.dayOftheweek;
+            ride.LuggageWeight = booking.Ride.LuggageWeight;
+            ride.LuggageSize = booking.Ride.LuggageSize;
+            ride.LuggageQuantity = booking.Ride.LuggageQuantity;
+            ride.BagWeight = booking.Ride.BagWeight;
+            ride.BagSize = booking.Ride.BagSize;
+            ride.BagQuantity = booking.Ride.BagQuantity;
+
+            db.Entry(passenger).State = EntityState.Modified;
+            db.Entry(driver).State = EntityState.Modified;
+            db.Entry(ride).State = EntityState.Modified;
+            db.Entry(booking).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookingExists(id))
+                {
+                    Debug.WriteLine("Booking not found");
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+
         /// <summary>
         /// Allows a passenger to retrieve information about a specific booking from the database.
         /// </summary>
