@@ -32,14 +32,14 @@ namespace driveSync.Controllers
             return View();
         }
         // GET: Booking/List
-        public ActionResult List()
+        public ActionResult ListBookingsForDriver()
         {
             //objective is to communicate with my Booking data api to retrieve a list of bookings.
             //curl https://localhost:44354/api/BookingData/ListBookings
 
 
             //Establish url connection endpoint i.e client sends info and anticipates a response
-            string url = "ListBookings";
+            string url = "ListBookingsForDriver";
             HttpResponseMessage response = client.GetAsync(url).Result;
             //this enables us see if our httpclient is communicating with our data access endpoint 
 
@@ -54,7 +54,59 @@ namespace driveSync.Controllers
             Debug.WriteLine(bookings.Count());
             //this shows the channel of comm btwn our webserver in our passenger controller and the actual passenger data controller api as we are communicating through an http request
 
-            return View(bookings);
+            return View("List", bookings);
+        }
+
+        // GET: Booking/List
+        public ActionResult ListBookingsForPassenger()
+        {
+            //objective is to communicate with my Booking data api to retrieve a list of bookings.
+            //curl https://localhost:44354/api/BookingData/ListBookings
+
+
+            //Establish url connection endpoint i.e client sends info and anticipates a response
+            string url = "ListBookingsForPassenger";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            //this enables us see if our httpclient is communicating with our data access endpoint 
+
+            Debug.WriteLine("The response code is");
+            Debug.WriteLine(response.StatusCode);
+
+            //objective is to parse the content of the response message into an IEnumerable of type booking.
+            IEnumerable<BookingDTO> bookings = response.Content.ReadAsAsync<IEnumerable<BookingDTO>>().Result;
+
+            //we use debug.writeline to test and see if its working
+            Debug.WriteLine("Number of bookings received");
+            Debug.WriteLine(bookings.Count());
+            //this shows the channel of comm btwn our webserver in our passenger controller and the actual passenger data controller api as we are communicating through an http request
+
+            return View("List", bookings);
+        }
+
+        // GET: Booking/List
+        public ActionResult ListBookingsForAdmin()
+        {
+            //objective is to communicate with my Booking data api to retrieve a list of bookings.
+            //curl https://localhost:44354/api/BookingData/ListBookings
+
+
+            //Establish url connection endpoint i.e client sends info and anticipates a response
+            string url = "ListBookingsForAdmin";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            //this enables us see if our httpclient is communicating with our data access endpoint 
+
+            Debug.WriteLine("The response code is");
+            Debug.WriteLine(response.StatusCode);
+
+            //objective is to parse the content of the response message into an IEnumerable of type booking.
+            IEnumerable<BookingDTO> bookings = response.Content.ReadAsAsync<IEnumerable<BookingDTO>>().Result;
+
+            //we use debug.writeline to test and see if its working
+            Debug.WriteLine("Number of bookings received");
+            Debug.WriteLine(bookings.Count());
+            //this shows the channel of comm btwn our webserver in our passenger controller and the actual passenger data controller api as we are communicating through an http request
+
+            return View("List", bookings);
         }
 
         // GET: Booking/Details/1
@@ -162,7 +214,7 @@ namespace driveSync.Controllers
                 // TODO: Add insert logic here
                 var response = _bookingdatacontroller.PostBooking(booking);
 
-                return RedirectToAction("List");
+                return RedirectToAction("ListBookingsForPassenger");
             }
             catch
             {
