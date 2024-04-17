@@ -358,5 +358,10 @@ namespace driveSync.Controllers
         {
             return db.Bookings.Count(e => e.BookingId == id) > 0;
         }
+
+        internal object PostBooking(Booking booking)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

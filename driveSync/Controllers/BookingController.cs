@@ -149,8 +149,13 @@ namespace driveSync.Controllers
             }
         }
 
-        [HttpPost]
         public ActionResult CreateBooking(Booking booking)
+        {
+            return CreateBooking(booking, _bookingdatacontroller);
+        }
+
+        [HttpPost]
+        public ActionResult CreateBooking(Booking booking, BookingDataController _bookingdatacontroller)
         {
             try
             {
