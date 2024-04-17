@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using driveSync.Models;
+using System;
 
 public enum UserType
 {
@@ -165,20 +166,21 @@ namespace driveSync.Controllers
                 if (result.Succeeded)
                 {
                     string role = ""; // Initialize role variable
-
+                    UserType enumRole;
+                    Enum.TryParse(model.UserType.ToString(), out enumRole);  
                     //Determine the role based on some condition, for example, user type in the registration form
-                    if (model.UserType == UserType.Passenger)
-                        {
-                            role = "Passenger";
-                        }
-                        else if (model.UserType == UserType.Driver)
-                        {
-                            role = "Driver";
-                        }
-                        else if (model.UserType == UserType.Admin)
-                        {
-                            role = "Admin";
-                        }
+                    if (enumRole == UserType.Passenger)
+                    {
+                        role = "Passenger";
+                    }
+                    else if (enumRole == UserType.Driver)
+                    {
+                        role = "Driver";
+                    }
+                    else if (enumRole == UserType.Admin)
+                    {
+                        role = "Admin";
+                    }
 
                     if (!string.IsNullOrEmpty(role))
                     {
