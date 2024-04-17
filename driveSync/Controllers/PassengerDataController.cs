@@ -150,6 +150,44 @@ namespace driveSync.Controllers
             return Ok(passengerDTO);
         }
 
+        /// <summary>
+        /// Retrieves a list of passengers whose names match the search key entered in the search textbox.
+        /// </summary>
+        /// <param name="PassengerSearchKey">The search key used to find matching passengers.</param>
+        /// <returns>
+        /// An IEnumerable of PassengerDTO objects representing the list of passengers matching the search key.
+        /// </returns>
+        /// <example>
+        /// GET api/PassengerData/ListPassengers/{PassengerSearchKey}
+        /// </example>
+        [HttpGet]
+        [Route("api/PassengerData/ListPassengers/{PassengerSearchKey}")]
+        public IEnumerable<PassengerDTO> ListPassengers(string PassengerSearchKey)
+        {
+            Debug.WriteLine("Trying to do an API search for " + PassengerSearchKey);
+
+            // Convert the search key to lower case for case-insensitive search
+            string searchKeyLower = PassengerSearchKey.ToLower();
+
+            // Query the database using LINQ
+            var matchingPassengers = db.Passengers
+                .Where(p => p.firstName.ToLower().Contains(searchKeyLower) || p.lastName.ToLower().Contains(searchKeyLower))
+                .ToList();
+
+            // Convert the matching passengers to DTOs
+            List<PassengerDTO> passengerDTOs = matchingPassengers.Select(p => new PassengerDTO
+            {
+                PassengerId = p.PassengerId,
+                firstName = p.firstName,
+                lastName = p.lastName,
+                username = p.username,
+                email = p.email
+            }).ToList();
+
+            return passengerDTOs;
+        }
+
+
         //GET: Passenger/Dispose
         protected override void Dispose(bool disposing)
         {

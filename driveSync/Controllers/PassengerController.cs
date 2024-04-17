@@ -103,6 +103,46 @@ namespace driveSync.Controllers
             }
         }
 
+            // GET: /Passenger/Show/{id}
+            // Route to /Views/Passenger/Show.cshtml
+            // It will show the details about the passenger
+            public ActionResult Show(int id)
+            {
+                Passenger selectedPassenger = passengerDataController.FindPassenger(id);
+                return View("Show", selectedPassenger);
+            }
+
+            // GET: Passenger/List/PassengerSearchKey={value}
+            // Go to /Views/Passenger/List.cshtml
+            public ActionResult ListWithSearchKey(string PassengerSearchKey)
+            {
+                IEnumerable<PassengerDTO> passengers = passengerDataController.ListPassengers(PassengerSearchKey);
+                return View("List", passengers);
+            }
+
+            // GET: Passenger/New
+            // Go to /Views/Passenger/New.cshtml
+            public ActionResult New()
+            {
+                return View();
+            }
+
+            // GET: Passenger/Search/{PassengerSearchKey}
+            // Route to /Views/Passenger/List.cshtml
+            // Retrieves a list of passengers whose names match the search key entered in the search textbox.
+            public ActionResult Search(string PassengerSearchKey)
+            {
+                IEnumerable<PassengerDTO> matchingPassengers = passengerDataController.ListPassengers(PassengerSearchKey);
+                return View("List", matchingPassengers);
+            }
+        
+
+
+        public ActionResult New()
+        {
+            return View();
+        }
+
         public ActionResult PassengerProfile()
         {
 

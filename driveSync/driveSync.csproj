@@ -188,8 +188,6 @@
     <Compile Include="Controllers\BookingDataController.cs" />
     <Compile Include="Controllers\driveSyncContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InventoryController.cs" />
-    <Compile Include="Controllers\InventoryDataController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PassengerController.cs" />
     <Compile Include="Controllers\RideController.cs" />
@@ -326,12 +324,6 @@
     <Content Include="Views\Ride\Error.cshtml" />
     <Content Include="Views\Ride\List.cshtml" />
     <Content Include="Views\Ride\SearchForRide.cshtml" />
-    <Content Include="Views\Inventory\Add.cshtml" />
-    <Content Include="Views\Inventory\Edit.cshtml" />
-    <Content Include="Views\Inventory\Details.cshtml" />
-    <Content Include="Views\Inventory\List.cshtml" />
-    <Content Include="Views\Inventory\DeleteConfirm.cshtml" />
-    <Content Include="Views\Inventory\Error.cshtml" />
     <Content Include="Views\Passenger\PassengerProfile.cshtml" />
     <Content Include="Views\Driver\DriverProfile.cshtml" />
     <Content Include="Views\Admin\AdminLogin.cshtml" />
