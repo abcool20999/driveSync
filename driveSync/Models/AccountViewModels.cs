@@ -81,7 +81,7 @@ namespace driveSync.Models
         public string ConfirmPassword { get; set; }
        
 
-        public UserType UserType { get; set; }
+        public string UserType { get; set; }
 
     }
 

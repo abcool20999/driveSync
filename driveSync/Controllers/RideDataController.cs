@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using driveSync;
 using driveSync.Models;
 
 
@@ -193,6 +194,51 @@ namespace ridesnShare.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+        /// <summary>
+        /// Searches for trips based on the provided location and destination.
+        /// </summary>
+        /// <param name="location">The starting location of the trip.</param>
+        /// <param name="destination">The destination of the trip.</param>
+        /// <returns>
+        /// A list of available trips that match the search criteria.
+        /// </returns>
+        public List<AvailableRidesDTO> SearchForRide(string location, string destination)
+        {
+            var rides = db.Rides.Include(t => t.Bookings).Where(t => t.startLocation == location
+                                        && t.endLocation == destination
+                                        //&& t.Time > DateTime.UtcNow
+                                        ).ToList();
+            var ridesinfo = new List<AvailableRidesDTO>();
+            Driver driver;
+            foreach (var ride in rides)
+            {
+                driver = db.Drivers.FirstOrDefault(d => d.DriverId == ride.DriverId);
+                ridesinfo.Add(new AvailableRidesDTO()
+                {
+                    RideId = ride.RideId,
+                    DriverFirstName = driver.firstName,
+                    DriverLastname = driver.lastName,
+                    StartLocation = ride.startLocation,
+                    EndLocation = ride.endLocation,
+                    Price = ride.price,
+                    SpotsLeft = 4 - ((List<Booking>)ride.Bookings).Count(),
+                    DriverAge = driver.Age,
+                    CarType = driver.CarType ?? "Toyota",
+                    Time = ride.Time,
+                    WeekDay = ride.dayOftheweek,
+                    LuggageQuantity = ride.LuggageQuantity,
+                    LuggageSize = ride.LuggageSize,
+                    LuggageWeight = ride.LuggageWeight,
+                    BagQuantity = ride.BagQuantity,
+                    BagSize = ride.BagSize, 
+                    BagWeight   = ride.BagWeight,
+                
+                });
+            }
+            return ridesinfo;
+        }
+
 
     }
 }

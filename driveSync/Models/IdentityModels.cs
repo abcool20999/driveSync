@@ -35,7 +35,7 @@ namespace driveSync.Models
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Booking> Bookings { get; set; }
 
-        public DbSet<Enum> Enum { get; set; }
+        
 
 
 

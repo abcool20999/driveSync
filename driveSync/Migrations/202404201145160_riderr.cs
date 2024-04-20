@@ -3,10 +3,23 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class driveSync : DbMigration
+    public partial class riderr : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Admins",
+                c => new
+                    {
+                        AdminId = c.Int(nullable: false, identity: true),
+                        firstName = c.String(),
+                        username = c.String(),
+                        password = c.String(),
+                        lastName = c.String(),
+                        email = c.String(),
+                    })
+                .PrimaryKey(t => t.AdminId);
+            
             CreateTable(
                 "dbo.Bookings",
                 c => new
@@ -59,6 +72,12 @@
                         price = c.String(),
                         Time = c.DateTime(nullable: false),
                         dayOftheweek = c.String(),
+                        BagQuantity = c.String(),
+                        BagWeight = c.String(),
+                        BagSize = c.String(),
+                        LuggageQuantity = c.String(),
+                        LuggageWeight = c.String(),
+                        LuggageSize = c.String(),
                         DriverId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.RideId)
@@ -180,6 +199,7 @@
             DropTable("dbo.Passengers");
             DropTable("dbo.Inventories");
             DropTable("dbo.Bookings");
+            DropTable("dbo.Admins");
         }
     }
 }

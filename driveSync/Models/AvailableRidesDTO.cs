@@ -18,5 +18,13 @@ namespace driveSync
         public string CarType { get; set; }
         public DateTime Time { get; set; }
         public string WeekDay { get; set; }
+
+        public string BagQuantity { get; set; }
+        public string BagWeight { get; set; }
+        public string BagSize { get; set; }
+
+        public string LuggageQuantity { get; set; }
+        public string LuggageWeight { get; set; }
+        public string LuggageSize { get; set; }
     }
 }

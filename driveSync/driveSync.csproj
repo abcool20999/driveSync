@@ -198,25 +198,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202403302159375_driveSync.cs" />
-    <Compile Include="Migrations\202403302159375_driveSync.designer.cs">
-      <DependentUpon>202403302159375_driveSync.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404030333430_admin.cs" />
-    <Compile Include="Migrations\202404030333430_admin.Designer.cs">
-      <DependentUpon>202404030333430_admin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404030655156_username.cs" />
-    <Compile Include="Migrations\202404030655156_username.Designer.cs">
-      <DependentUpon>202404030655156_username.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404030929422_addrides.cs" />
-    <Compile Include="Migrations\202404030929422_addrides.Designer.cs">
-      <DependentUpon>202404030929422_addrides.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404170659148_enum.cs" />
-    <Compile Include="Migrations\202404170659148_enum.Designer.cs">
-      <DependentUpon>202404170659148_enum.cs</DependentUpon>
+    <Compile Include="Migrations\202404201145160_riderr.cs" />
+    <Compile Include="Migrations\202404201145160_riderr.Designer.cs">
+      <DependentUpon>202404201145160_riderr.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -225,7 +209,7 @@
     <Compile Include="Models\AvailableRidesDTO.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Driver.cs" />
-    <Compile Include="Models\Enum.cs" />
+    <Compile Include="Constants\Enum.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -366,20 +350,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202403302159375_driveSync.resx">
-      <DependentUpon>202403302159375_driveSync.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404030333430_admin.resx">
-      <DependentUpon>202404030333430_admin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404030655156_username.resx">
-      <DependentUpon>202404030655156_username.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404030929422_addrides.resx">
-      <DependentUpon>202404030929422_addrides.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404170659148_enum.resx">
-      <DependentUpon>202404170659148_enum.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202404201145160_riderr.resx">
+      <DependentUpon>202404201145160_riderr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

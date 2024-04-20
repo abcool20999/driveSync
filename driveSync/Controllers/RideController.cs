@@ -12,6 +12,7 @@ using System.Data.Entity.Migrations.Model;
 using System.Security.Policy;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
+using ridesnShare.Controllers;
 
 namespace driveSync.Controllers
 {
@@ -19,6 +20,11 @@ namespace driveSync.Controllers
     {
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
+        private readonly RideDataController _ridedatacontroller;
+        public RideController()
+        {
+            _ridedatacontroller = new RideDataController();
+        }
 
         static RideController()
         {
@@ -237,6 +243,37 @@ public ActionResult Details(int id)
                 // Redirect to the Error action if there was an error during the update
                 return RedirectToAction("Error");
             }
+        }
+        public ActionResult SearchForRide(int id)
+        {
+            ViewBag.passengerId = id;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SearchForRidePost(int id, string location, string destination)
+        {
+            var availablerides = _ridedatacontroller.SearchForRide(location, destination);
+
+            if (availablerides == default)
+            {
+                return View("AvailableRides");
+            }
+
+            ViewBag.passengerId = id;
+
+            return View("AvailableRides", availablerides);
+        }
+
+        // GET: Trip/Delete/5
+        public ActionResult DeleteConfirm(int id)
+        {
+            string url = "FindRide/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            RideDTO selectedride = response.Content.ReadAsAsync<RideDTO>().Result;
+            return View(selectedride);
+
         }
 
         // GET: Ride/Delete/5
