@@ -222,7 +222,7 @@ namespace ridesnShare.Controllers
                     StartLocation = ride.startLocation,
                     EndLocation = ride.endLocation,
                     Price = ride.price,
-                    SpotsLeft = 4 - ((List<Booking>)ride.Bookings).Count(),
+                    SpotsLeft = 4 -ride.Bookings.Count,
                     DriverAge = driver.Age,
                     CarType = driver.CarType ?? "Toyota",
                     Time = ride.Time,

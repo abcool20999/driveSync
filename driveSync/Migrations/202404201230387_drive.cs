@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class riderr : DbMigration
+    public partial class drive : DbMigration
     {
         public override void Up()
         {

@@ -7,13 +7,13 @@ namespace driveSync.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class riderr : IMigrationMetadata
+    public sealed partial class drive : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(riderr));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(drive));
         
         string IMigrationMetadata.Id
         {
-            get { return "202404201145160_riderr"; }
+            get { return "202404201230387_drive"; }
         }
         
         string IMigrationMetadata.Source

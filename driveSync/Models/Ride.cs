@@ -41,7 +41,7 @@ namespace driveSync.Models
         [ForeignKey("Driver")]
         public int DriverId { get; set; }
         public virtual Driver Driver { get; set; }
-        public object Bookings { get; internal set; }
+        public virtual ICollection<Booking> Bookings { get; set; }
     }
 
     public class RideDTO
