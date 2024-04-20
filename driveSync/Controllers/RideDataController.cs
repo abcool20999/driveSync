@@ -196,12 +196,12 @@ namespace ridesnShare.Controllers
         }
 
         /// <summary>
-        /// Searches for trips based on the provided location and destination.
+        /// Searches for rides based on the provided location and destination.
         /// </summary>
-        /// <param name="location">The starting location of the trip.</param>
-        /// <param name="destination">The destination of the trip.</param>
+        /// <param name="location">The starting location of the ride.</param>
+        /// <param name="destination">The destination of the ride.</param>
         /// <returns>
-        /// A list of available trips that match the search criteria.
+        /// A list of available rides that match the search criteria.
         /// </returns>
         public List<AvailableRidesDTO> SearchForRide(string location, string destination)
         {

@@ -101,10 +101,10 @@ public ActionResult Details(int id)
         [HttpPost]
         public ActionResult AddRide(Ride ride)
         {
-            Debug.WriteLine("the inputted trip name is :");
+            Debug.WriteLine("the inputted Ride name is :");
             Debug.WriteLine(ride.Price);
-            //objective: add a new trip into our system using the API
-            //curl -H "Content-Type:application/json" -d @trip.json  https://localhost:44354/api/RideData/AddRide
+            //objective: add a new Ride into our system using the API
+            //curl -H "Content-Type:application/json" -d @Ride.json  https://localhost:44354/api/RideData/AddRide
 
             string url = "AddRide";
 
@@ -266,7 +266,7 @@ public ActionResult Details(int id)
             return View("AvailableRides", availablerides);
         }
 
-        // GET: Trip/Delete/5
+        // GET: Ride/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
             string url = "FindRide/" + id;
