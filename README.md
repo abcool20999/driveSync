@@ -2,32 +2,37 @@
 
 Welcome to the driveSync App! This .NET application is designed to facilitate cheaper rides for users by allowing them to share rides with other passengers and inventory items they plan to carry along the way. It includes several controllers and features to manage passengers, drivers, rides, inventory, and bookings.
 
-## Controllers
+## Structure and User Functionalities:
 
-### PassengerController
-- Manages passengers and their details.
-- Allows for CRUD operations on passengers.
-- Powers the ability to create, read, update, and delete passengers.
+### Admin:
+- Can add, view, edit, and delete passengers.
+- Can add, view, edit, and delete drivers.
+- Can view, edit, and delete bookings for both passengers and drivers.
 
-### DriverController
-- Manages drivers and their details.
-- Allows for CRUD operations on drivers.
-- Provides validation for driver usernames and passwords.
+### Passengers:
+- Can view bookings.
+- Can create bookings.
+- Can delete bookings.
+- Cannot update bookings; only Admin has authorization.
 
-### RidesController
-- Handles trips and trip-related operations.
-- Allows for creating, reading, and deleting trips.
-- Includes a search feature for the dashboard to enable passengers to search for trips.
+### Drivers:
+- Can view bookings.
+- Can delete bookings.
+- Cannot update bookings; only Admin has authorization.
+- Can add, update, delete, and view rides.
 
-### BookingsController
-- Manages bookings between passengers and drivers.
-- Enables passengers to create, read, and update bookings.
-- Shows bookings for drivers and passengers.
+## Incorporated Feedback:
+- Added well-documented comments for all MVC and data controllers.
+- Properly differentiated controller methods for drivers, passengers, and admin.
+- Utilized built-in login and enhanced it by integrating the account controller for login and authorization.
 
-## Additional Features
+## Summary of Controllers:
+- RideController
+- BookingController
+- PassengerController
+- DriverController
 
-- **Search Feature**: Allows admin to search through a list of users.
-- **Date Picker**: Allows users and drivers to select a date.
+Each controller has corresponding data controllers. Features include drivers managing rides, passengers creating and deleting bookings, and admins overseeing both passengers and drivers, with exclusive booking update rights.
 
 ## Usage
 
@@ -43,10 +48,10 @@ To run the driveSync App locally:
 ## Contributors
 
 1. **Fazhrul Sadip**
-   - Models: `Passenger.cs`, `Inventory.cs`
-   - Controllers: `PassengerController`, `PassengerDataController`, `InventoryController`, `InventoryDataController`
-   - Views: `Passenger`, `Inventory`
-   
+   - Models: `Passenger.cs`
+   - Controllers: `PassengerController`, `PassengerDataController`
+   - Views: `Passenger`
+
 2. **Awotunde Abraham**
    - Models: `Driver.cs`, `Ride.cs`, `Booking.cs`, `Admin`
    - Controllers: `DriverController`, `DriverDataController`, `RideController`, `RideDataController`, `AdminController`, `AdminDataController`, `BookingController`, `BookingDataController`
